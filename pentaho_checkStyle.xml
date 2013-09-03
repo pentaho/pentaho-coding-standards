@@ -174,9 +174,6 @@
         <module name="SimplifyBooleanExpression"/>
         <module name="SimplifyBooleanReturn"/>
         <module name="IllegalThrows"/>
-        <module name="ReturnCount">
-            <property name="max" value="3"/>
-        </module>
         <module name="DeclarationOrder"/>
         <module name="ParameterAssignment"/>
         <module name="ExplicitInitialization"/>
