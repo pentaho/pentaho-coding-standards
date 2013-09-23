@@ -82,9 +82,33 @@
 
         <!-- Checks for Javadoc comments.                     -->
         <!-- See http://checkstyle.sf.net/config_javadoc.html -->
+        <module name="JavadocMethod">
+            <property name="allowMissingPropertyJavadoc" value="true"/>
+            <property name="logLoadErrors" value="false"/>
+            <property name="suppressLoadErrors" value="true"/>
+        </module>
         <module name="JavadocType">
            <property name="scope" value="package"/>
         </module>
+        <module name="JavadocVariable">
+           <property name="scope" value="package"/>
+        </module>
+        <module name="JavadocStyle">
+            <property name="checkFirstSentence" value="false"/>
+        </module>
+
+
+        <!-- Checks for Naming Conventions.                  -->
+        <!-- See http://checkstyle.sf.net/config_naming.html -->
+        <module name="ConstantName"/>
+        <module name="LocalFinalVariableName"/>
+        <module name="LocalVariableName"/>
+        <module name="MemberName"/>
+        <module name="MethodName"/>
+        <module name="PackageName"/>
+        <module name="ParameterName"/>
+        <module name="StaticVariableName"/>
+        <module name="TypeName"/>
 
 
         <!-- Checks for imports                              -->
@@ -100,6 +124,8 @@
         <module name="LineLength">
             <property name="max" value="120"/>
         </module>
+        <module name="MethodLength"/>
+        <module name="ParameterNumber"/>
 
 
         <!-- Checks for whitespace                               -->
@@ -143,13 +169,45 @@
         <!-- Checks for common coding problems               -->
         <!-- See http://checkstyle.sf.net/config_coding.html -->
         <module name="EmptyStatement"/>
+        <module name="EqualsHashCode"/>
+        <module name="IllegalInstantiation"/>
+        <module name="InnerAssignment"/>
+        <module name="MagicNumber">
+           <property name="ignoreHashCodeMethod" value="true"/>
+        </module>
+        <module name="MissingSwitchDefault"/>
+        <module name="RedundantThrows"/>
+        <module name="IllegalThrows"/>
+        <module name="DeclarationOrder"/>
+        <module name="ParameterAssignment"/>
+        <module name="ExplicitInitialization"/>
+        <module name="MultipleVariableDeclarations"/>
+        <module name="MultipleStringLiterals">
+            <property name="allowedDuplicates" value="2"/>
+            <property name="ignoreStringsRegexp" value='^(("")|(", "))$'/>
+        </module>
+        <module name="UnnecessaryParentheses"/>
         <module name="OneStatementPerLine"/>
-        
+        <module name="EqualsHashCode"/>
+        <module name="CovariantEquals"/>
+        <module name="EmptyStatement"/>
+
+        <!-- Checks for class design                         -->
+        <!-- See http://checkstyle.sf.net/config_design.html -->
+        <module name="HideUtilityClassConstructor"/>
+        <module name="InterfaceIsType"/>
+        <module name="ThrowsCount">
+            <property name="max" value="2"/>
+        </module>
+        <module name="InnerTypeLast"/>
+
 
         <!-- Miscellaneous other checks.                   -->
         <!-- See http://checkstyle.sf.net/config_misc.html -->
         <module name="ArrayTypeStyle"/>
-        
+        <module name="TodoComment"/>
+        <module name="UpperEll"/>
+
         <!-- "string" == "string" check -->
         <module name="DescendantToken">
             <property name="tokens" value="EQUAL,NOT_EQUAL"/>
