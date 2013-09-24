@@ -100,6 +100,7 @@
         <!-- See http://checkstyle.sf.net/config_sizes.html -->
         <module name="LineLength">
             <property name="max" value="120"/>
+            <property name="ignorePattern" value="NON\-NLS\-\d\$"/>
         </module>
 
 
