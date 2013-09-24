@@ -45,7 +45,7 @@
 
     <!-- Checks that property files contain the same keys.         -->
     <!-- See http://checkstyle.sf.net/config_misc.html#Translation -->
-    <module name="Translation"/>
+    <!-- <module name="Translation"/> -->
     
     <!-- Checks for Size Violations.                    -->
     <!-- See http://checkstyle.sf.net/config_sizes.html -->
@@ -69,6 +69,7 @@
     </module>
 
     <module name="TreeWalker">
+        
         <!-- trailing spaces check -->
         <!-- See http://checkstyle.sourceforge.net/config_regexp.html -->
         <module name="RegexpSinglelineJava">
@@ -82,10 +83,10 @@
 
         <!-- Checks for Javadoc comments.                     -->
         <!-- See http://checkstyle.sf.net/config_javadoc.html -->
-        <module name="JavadocType">
+        <!-- <module name="JavadocType">
            <property name="scope" value="package"/>
         </module>
-
+ -->
 
         <!-- Checks for imports                              -->
         <!-- See http://checkstyle.sf.net/config_import.html -->
@@ -104,10 +105,16 @@
 
         <!-- Checks for whitespace                               -->
         <!-- See http://checkstyle.sf.net/config_whitespace.html -->
-        <module name="EmptyForIteratorPad"/>
+        <module name="EmptyForInitializerPad">
+            <property name="option" value="space"/>
+        </module>
         <module name="GenericWhitespace"/>
         <module name="MethodParamPad"/>
-        <module name="NoWhitespaceAfter"/>
+
+        <module name="NoWhitespaceAfter">
+            <property name="tokens" value="BNOT, DEC, DOT, INC, LNOT, UNARY_MINUS, UNARY_PLUS"/>
+        </module>
+
         <module name="NoWhitespaceBefore"/>
         <module name="OperatorWrap"/>
         <!-- <module name="ParenPad"/> -->
@@ -116,7 +123,7 @@
             <property name="tokens" value="RPAREN, LPAREN"/>
             <property name="option" value="space"/>
         </module>
-                
+    
 
         <module name="TypecastParenPad"/>
         <module name="WhitespaceAfter"/>
