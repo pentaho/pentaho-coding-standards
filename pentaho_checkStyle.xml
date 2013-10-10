@@ -70,6 +70,8 @@
 
     <module name="TreeWalker">
         
+        <module name="FileContentsHolder"/>
+
         <!-- trailing spaces check -->
         <!-- See http://checkstyle.sourceforge.net/config_regexp.html -->
         <module name="RegexpSinglelineJava">
