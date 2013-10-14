@@ -15,6 +15,5 @@ The plugin documentation is here if you need it: http://eclipse-cs.sourceforge.n
 
 Installation (IntelliJ):
 
-1. Install CheckStyle-IDEA and Eclipse Code Formatter plugins. Both are available in the default public repo.
-2. Configure the pentaho_checkStyle.xml for CheckStyle and pentaho_formatter.xml for the Eclipse Code Formatter
-3. You should now be able to auto format and receive CheckStyle violation notifications.
+1. Copy the codeStyleSettings.xml into your IntelliJ project folder ( {{IdeaIntelliJProjectFolder}}/.idea/codeStyleSettings.xml). Overwrite if it's already there.
+2. Open IntelliJ, set the Project Settings -> Code Style -> Scheme to "Project"
