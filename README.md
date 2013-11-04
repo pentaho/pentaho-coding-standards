@@ -15,5 +15,7 @@ The plugin documentation is here if you need it: http://eclipse-cs.sourceforge.n
 
 Installation (IntelliJ):
 
-1. Copy the codeStyleSettings.xml into your IntelliJ project folder ( {{IdeaIntelliJProjectFolder}}/.idea/codeStyleSettings.xml). Overwrite if it's already there.
-2. Open IntelliJ, set the Project Settings -> Code Style -> Scheme to "Project"
+1. Install the CheckStyle-IDEA plugin. It's available in the default public repository.
+2. Configure the CheckStyle-IDEA with pentaho_checkStyle.xml.
+3. Copy the codeStyleSettings.xml into your IntelliJ project folder ( {{IdeaIntelliJProjectFolder}}/.idea/codeStyleSettings.xml). Overwrite if it's already there.
+4. Open IntelliJ, set the Project Settings -> Code Style -> Scheme to "Project"
