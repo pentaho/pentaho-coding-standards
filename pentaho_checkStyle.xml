@@ -68,6 +68,10 @@
         <property name="influenceFormat" value="$2"/>
     </module>
 
+    <module name="SuppressionFilter">
+      <property name="file" value="suppressions.xml"/>
+    </module>
+
     <module name="TreeWalker">
         
         <module name="FileContentsHolder"/>
