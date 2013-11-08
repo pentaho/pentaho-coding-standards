@@ -41,7 +41,11 @@
 
     <!-- Checks whether files end with a new line.                        -->
     <!-- See http://checkstyle.sf.net/config_misc.html#NewlineAtEndOfFile -->
-    <module name="NewlineAtEndOfFile"/>
+    <module name="NewlineAtEndOfFile">
+        <property name="lineSeparator" value="lf"/>
+        <property name="fileExtensions" value="java"/>
+    </module>
+            
 
     <!-- Checks that property files contain the same keys.         -->
     <!-- See http://checkstyle.sf.net/config_misc.html#Translation -->
@@ -66,6 +70,12 @@
         <property name="commentFormat" value="CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES"/>
         <property name="checkFormat" value="$1"/>
         <property name="influenceFormat" value="$2"/>
+    </module>
+
+    <module name="SuppressionCommentFilter">
+            <property name="offCommentFormat" value="CHECKSTYLE:([^:]+):OFF"/>
+        <property name="onCommentFormat" value="CHECKSTYLE:([^:]+):ON"/>
+        <property name="checkFormat" value="$1"/>
     </module>
 
     <module name="SuppressionFilter">
