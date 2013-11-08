@@ -20,3 +20,6 @@ The Eclipse CheckStyle plugin documentation my be helpful: http://eclipse-cs.sou
 3. Configure the CheckStyle-IDEA with pentaho_checkStyle.xml.
 4. Copy the codeStyleSettings.xml into your IntelliJ project folder ( {{IdeaIntelliJProjectFolder}}/.idea/codeStyleSettings.xml). Overwrite if it's already there.
 5. Open IntelliJ, set the Project Settings -> Code Style -> Scheme to "Project"
+
+## Additional Information
+[CheckStyle Tips](https://github.com/pentaho/pentaho-coding-standards/wiki/CheckStyle-Tips) - Learn how to suppress CheckStyle modules for select areas.
