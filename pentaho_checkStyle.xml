@@ -45,16 +45,16 @@
         <property name="lineSeparator" value="lf"/>
         <property name="fileExtensions" value="java"/>
     </module>
-            
+
 
     <!-- Checks that property files contain the same keys.         -->
     <!-- See http://checkstyle.sf.net/config_misc.html#Translation -->
     <!-- <module name="Translation"/> -->
-    
+
     <!-- Checks for Size Violations.                    -->
     <!-- See http://checkstyle.sf.net/config_sizes.html -->
     <module name="FileLength"/>
-    
+
     <!-- Checks for whitespace                               -->
     <!-- See http://checkstyle.sf.net/config_whitespace.html -->
     <module name="FileTabCharacter"/>
@@ -79,11 +79,11 @@
     </module>
 
     <module name="SuppressionFilter">
-      <property name="file" value="suppressions.xml"/>
+        <property name="file" value="${samedir}/suppressions.xml"/>
     </module>
 
     <module name="TreeWalker">
-        
+
         <module name="FileContentsHolder"/>
 
         <!-- trailing spaces check -->
@@ -139,12 +139,12 @@
         <module name="NoWhitespaceBefore"/>
         <module name="OperatorWrap"/>
         <!-- <module name="ParenPad"/> -->
-            
+
         <module name="ParenPad">
             <property name="tokens" value="RPAREN, LPAREN"/>
             <property name="option" value="space"/>
         </module>
-    
+
 
         <module name="TypecastParenPad"/>
         <module name="WhitespaceAfter"/>
@@ -181,12 +181,12 @@
         <!-- See http://checkstyle.sf.net/config_coding.html -->
         <module name="EmptyStatement"/>
         <module name="OneStatementPerLine"/>
-        
+
 
         <!-- Miscellaneous other checks.                   -->
         <!-- See http://checkstyle.sf.net/config_misc.html -->
         <module name="ArrayTypeStyle"/>
-        
+
         <!-- "string" == "string" check -->
         <module name="DescendantToken">
             <property name="tokens" value="EQUAL,NOT_EQUAL"/>
