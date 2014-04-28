@@ -120,10 +120,10 @@
         <!-- See http://checkstyle.sf.net/config_sizes.html -->
         <!-- We want 120, but due to issues with how the Eclipse code-formatter handles white-space (it can't count)
              we've upped this to avoid having to manually break lines in eclipse -->
-        <module name="LineLength">
+        <!--<module name="LineLength">
             <property name="max" value="135"/>
             <property name="ignorePattern" value="NON\-NLS\-\d\$"/>
-        </module>
+        </module>-->
 
 
         <!-- Checks for whitespace                               -->
