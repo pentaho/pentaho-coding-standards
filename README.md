@@ -7,9 +7,9 @@ CheckStyle will soon be integrated into our build system. Until that time, you'l
 ### Installation (Eclipse):
 
 1. Install CheckStyle plugin http://eclipse-cs.sf.net/update/
-2. Clone this repository to your machine.
-3. Configure the plugin to use the pentaho_checkStyle.xml
-4. Configure the Eclipse Code Formatter to use the attached pentaho_formatter.xml
+2. Configure the plugin to use the pentaho_checkStyle.xml; give it the raw github URL: https://raw.githubusercontent.com/pentaho/pentaho-coding-standards/master/pentaho_checkStyle.xml  
+   (that will also dynamically retrieve the Pentaho suppressions.xml referenced in the checker) 
+3. Configure the Eclipse Code Formatter to use the attached pentaho_formatter.xml
 
 The Eclipse CheckStyle plugin documentation my be helpful: http://eclipse-cs.sourceforge.net
 
