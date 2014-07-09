@@ -79,7 +79,7 @@
     </module>
 
     <module name="SuppressionFilter">
-        <property name="file" value="${samedir}suppressions.xml"/>
+        <property name="file" value="${samedir}/suppressions.xml"/>
     </module>
 
     <module name="TreeWalker">
