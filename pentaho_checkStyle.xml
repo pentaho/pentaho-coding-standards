@@ -143,7 +143,7 @@
         <!-- <module name="ParenPad"/> -->
 
         <module name="ParenPad">
-            <property name="tokens" value="RPAREN, LPAREN"/>
+            <property name="tokens" value="ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_DEF, CTOR_CALL, ENUM_CONSTANT_DEF, EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_NEW, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL, METHOD_DEF, RESOURCE_SPECIFICATION, SUPER_CTOR_CALL, QUESTION"/>
             <property name="option" value="space"/>
         </module>
 
@@ -201,6 +201,8 @@
             <property name="basicOffset" value="2"/>
             <property name="caseIndent" value="2"/>
             <property name="throwsIndent" value="2"/>
+            <property name="arrayInitIndent" value="2"/>
+            <property name="lineWrappingIndentation" value="2"/>
         </module>
     </module>
 </module>
