@@ -17,9 +17,11 @@ The Eclipse CheckStyle plugin documentation my be helpful: http://eclipse-cs.sou
 
 1. Install the CheckStyle-IDEA plugin. (available in the default public repository)
 2. Clone this repository to your machine.
-3. Configure the CheckStyle-IDEA with pentaho_checkStyle_idea.xml (Preferences -> Other Settings -> CheckStyle).
-4. Copy the codeStyleSettings.xml into your IntelliJ project folder ( {{IdeaIntelliJProjectFolder}}/.idea/codeStyleSettings.xml). Overwrite if it's already there.
-5. Open IntelliJ, set the Project Settings -> Code Style -> Scheme to "Project"
+3. Set IDEA_JDK_64 environment variable to the installation directory of your Java 8 JDK
+4. Configure the CheckStyle-IDEA with pentaho_checkStyle_idea.xml (Preferences -> Other Settings -> CheckStyle).
+5. Set the samedir "Property Name" "Value" to ".".
+6. Copy the codeStyleSettings.xml into your IntelliJ project folder ( {{IdeaIntelliJProjectFolder}}/.idea/codeStyleSettings.xml). Overwrite if it's already there.
+7. Open IntelliJ, set the Project Settings -> Code Style -> Scheme to "Project"
 
 ## Additional Information
 [CheckStyle Tips](https://github.com/pentaho/pentaho-coding-standards/wiki/CheckStyle-Tips) - Learn how to suppress CheckStyle modules for select areas.
