@@ -52,8 +52,8 @@
           <option name="SPACE_WITHIN_BRACKETS" value="true" />
           <option name="SPACE_WITHIN_BRACES" value="true" />
           <option name="SPACE_WITHIN_ARRAY_INITIALIZER_BRACES" value="true" />
-          <option name="SPACE_BEFORE_SWITCH_PARENTHESES" value="false" />
-          <option name="SPACE_BEFORE_SYNCHRONIZED_PARENTHESES" value="false" />
+          <option name="SPACE_BEFORE_SWITCH_PARENTHESES" value="true" />
+          <option name="SPACE_BEFORE_SYNCHRONIZED_PARENTHESES" value="true" />
           <option name="SPACE_BEFORE_ARRAY_INITIALIZER_LBRACE" value="true" />
           <option name="SPACE_BEFORE_ANNOTATION_ARRAY_INITIALIZER_LBRACE" value="true" />
           <option name="CALL_PARAMETERS_WRAP" value="1" />
