@@ -2,207 +2,157 @@
 <!DOCTYPE module PUBLIC
           "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
           "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
-
-<!--
-
-  Checkstyle configuration that checks the sun coding conventions from:
-
-    - the Java Language Specification at
-      http://java.sun.com/docs/books/jls/second_edition/html/index.html
-
-    - the Sun Code Conventions at http://java.sun.com/docs/codeconv/
-
-    - the Javadoc guidelines at
-      http://java.sun.com/j2se/javadoc/writingdoccomments/index.html
-
-    - the JDK Api documentation http://java.sun.com/j2se/docs/api/index.html
-
-    - some best practices
-
-  Checkstyle is very configurable. Be sure to read the documentation at
-  http://checkstyle.sf.net (or in your downloaded distribution).
-
-  Most Checks are configurable, be sure to consult the documentation.
-
-  To completely disable a check, just comment it out or delete it from the file.
-
-  Finally, it is worth reading the documentation.
-
--->
-
 <module name="Checker">
-    <!--
-        If you set the basedir property below, then all reported file
-        names will be relative to the specified directory. See
-        http://checkstyle.sourceforge.net/5.x/config.html#Checker
-
-        <property name="basedir" value="${basedir}"/>
-    -->
-
-    <!-- Checks whether files end with a new line.                        -->
-    <!-- See http://checkstyle.sf.net/config_misc.html#NewlineAtEndOfFile -->
-    <module name="NewlineAtEndOfFile">
-        <property name="lineSeparator" value="lf"/>
-        <property name="fileExtensions" value="java"/>
+  <module name="SuppressWithNearbyCommentFilter">
+    <property name="commentFormat" value="CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES"/>
+    <property name="checkFormat" value="$1"/>
+    <property name="influenceFormat" value="$2"/>
+  </module>
+  <module name="NewlineAtEndOfFile">
+    <property name="severity" value="info"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="lineSeparator" value="lf"/>
+  </module>
+  <module name="FileTabCharacter">
+    <property name="severity" value="info"/>
+  </module>
+  <module name="SuppressionCommentFilter">
+    <property name="offCommentFormat" value="CHECKSTYLE:([^:]+):OFF"/>
+    <property name="onCommentFormat" value="CHECKSTYLE:([^:]+):ON"/>
+    <property name="checkFormat" value="$1"/>
+  </module>
+  <module name="SuppressionFilter">
+    <property name="file" value="http://nexus.pentaho.org/content/groups/omni/com/pentaho/pentaho-coding-standards/pentaho-checkstyle-suppressions/1.0.2/pentaho-checkstyle-suppressions-1.0.2.xml"/>
+  </module>
+  <module name="TreeWalker">
+    <module name="FileContentsHolder"/>
+    <module name="ArrayTypeStyle">
+      <property name="severity" value="info"/>
+      <property name="javaStyle" value="true"/>
     </module>
-
-
-    <!-- Checks that property files contain the same keys.         -->
-    <!-- See http://checkstyle.sf.net/config_misc.html#Translation -->
-    <!-- <module name="Translation"/> -->
-
-    <!-- Checks for Size Violations.                    -->
-    <!-- See http://checkstyle.sf.net/config_sizes.html -->
-    <module name="FileLength"/>
-
-    <!-- Checks for whitespace                               -->
-    <!-- See http://checkstyle.sf.net/config_whitespace.html -->
-    <module name="FileTabCharacter"/>
-
-    <!-- Checks for Headers                                -->
-    <!-- See http://checkstyle.sf.net/config_header.html   -->
-    <!-- <module name="Header"> -->
-    <!--   <property name="headerFile" value="${checkstyle.header.file}"/> -->
-    <!--   <property name="fileExtensions" value="java"/> -->
-    <!-- </module> -->
-
-    <module name="SuppressWithNearbyCommentFilter">
-        <property name="commentFormat" value="CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES"/>
-        <property name="checkFormat" value="$1"/>
-        <property name="influenceFormat" value="$2"/>
+    <module name="AvoidNestedBlocks">
+      <property name="severity" value="info"/>
+      <property name="allowInSwitchCase" value="true"/>
     </module>
-
-    <module name="SuppressionCommentFilter">
-            <property name="offCommentFormat" value="CHECKSTYLE:([^:]+):OFF"/>
-        <property name="onCommentFormat" value="CHECKSTYLE:([^:]+):ON"/>
-        <property name="checkFormat" value="$1"/>
+    <module name="AvoidStarImport">
+      <property name="severity" value="info"/>
+      <property name="allowStaticMemberImports" value="false"/>
+      <property name="excludes" value="org.junit.*"/>
+      <property name="allowClassImports" value="false"/>
     </module>
-
-    <module name="SuppressionFilter">
-        <property name="file" value="${samedir}/suppressions.xml"/>
+    <module name="EmptyBlock">
+      <property name="severity" value="info"/>
+      <property name="option" value="statement"/>
+      <property name="tokens" value="LITERAL_WHILE,LITERAL_TRY,LITERAL_FINALLY,LITERAL_DO,LITERAL_IF,LITERAL_ELSE,LITERAL_FOR,INSTANCE_INIT,STATIC_INIT,LITERAL_SWITCH,LITERAL_SYNCHRONIZED"/>
     </module>
-
-    <module name="TreeWalker">
-
-        <module name="FileContentsHolder"/>
-
-        <!-- trailing spaces check -->
-        <!-- See http://checkstyle.sourceforge.net/config_regexp.html -->
-        <module name="RegexpSinglelineJava">
-           <property name="format" value="\s+$"/>
-           <property name="minimum" value="0"/>
-           <property name="maximum" value="0"/>
-           <property name="message" value="Line has trailing spaces."/>
-           <property name="ignoreComments" value="true"/>
-        </module>
-
-
-        <!-- Checks for Javadoc comments.                     -->
-        <!-- See http://checkstyle.sf.net/config_javadoc.html -->
-        <!-- <module name="JavadocType">
-           <property name="scope" value="package"/>
-        </module>
- -->
-
-        <!-- Checks for imports                              -->
-        <!-- See http://checkstyle.sf.net/config_import.html -->
-        <module name="AvoidStarImport">
-           <property name="allowStaticMemberImports" value="true"/>
-        </module>
-        <module name="IllegalImport"/> <!-- defaults to sun.* packages -->
-        <module name="RedundantImport"/>
-        <module name="UnusedImports">
-            <!-- <property name="processJavadoc" value="true"/> -->
-        </module>
-
-
-        <!-- Checks for Size Violations.                    -->
-        <!-- See http://checkstyle.sf.net/config_sizes.html -->
-        <!-- We want 120, but due to issues with how the Eclipse code-formatter handles white-space (it can't count)
-             we've upped this to avoid having to manually break lines in eclipse -->
-        <!--<module name="LineLength">
-            <property name="max" value="135"/>
-            <property name="ignorePattern" value="NON\-NLS\-\d\$"/>
-        </module>-->
-
-
-        <!-- Checks for whitespace                               -->
-        <!-- See http://checkstyle.sf.net/config_whitespace.html -->
-        <module name="EmptyForInitializerPad">
-            <property name="option" value="space"/>
-        </module>
-        <module name="GenericWhitespace"/>
-        <module name="MethodParamPad"/>
-
-        <module name="NoWhitespaceAfter">
-            <property name="tokens" value="BNOT, DEC, DOT, INC, LNOT, UNARY_MINUS, UNARY_PLUS"/>
-        </module>
-
-        <module name="NoWhitespaceBefore"/>
-        <module name="OperatorWrap"/>
-        <!-- <module name="ParenPad"/> -->
-
-        <module name="ParenPad">
-            <property name="tokens" value="ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_DEF, CTOR_CALL, ENUM_CONSTANT_DEF, EXPR, LITERAL_CATCH, LITERAL_DO, LITERAL_FOR, LITERAL_IF, LITERAL_NEW, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_WHILE, METHOD_CALL, METHOD_DEF, RESOURCE_SPECIFICATION, SUPER_CTOR_CALL, QUESTION"/>
-            <property name="option" value="space"/>
-        </module>
-
-
-        <module name="TypecastParenPad"/>
-        <module name="WhitespaceAfter"/>
-        <module name="WhitespaceAround"/>
-
-
-        <!-- Modifier Checks                                    -->
-        <!-- See http://checkstyle.sf.net/config_modifiers.html -->
-        <module name="ModifierOrder"/>
-        <!-- <module name="RedundantModifier"/> -->
-
-
-        <!-- Checks for blocks. You know, those {}'s         -->
-        <!-- See http://checkstyle.sf.net/config_blocks.html -->
-        <module name="AvoidNestedBlocks">
-           <property name="allowInSwitchCase" value="true"/>
-        </module>
-
-        <module name="EmptyBlock">
-            <property name="option" value="stmt"/>
-            <property name="tokens" value="LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, LITERAL_IF, LITERAL_FOR, LITERAL_TRY, LITERAL_WHILE, INSTANCE_INIT, STATIC_INIT"/>
-        </module>
-        <module name="EmptyBlock">
-            <property name="option" value="text"/>
-            <property name="tokens" value="LITERAL_CATCH"/>
-        </module>
-
-        <module name="LeftCurly"/>
-        <module name="NeedBraces"/>
-        <module name="RightCurly"/>
-
-
-        <!-- Checks for common coding problems               -->
-        <!-- See http://checkstyle.sf.net/config_coding.html -->
-        <module name="EmptyStatement"/>
-        <module name="OneStatementPerLine"/>
-
-
-        <!-- Miscellaneous other checks.                   -->
-        <!-- See http://checkstyle.sf.net/config_misc.html -->
-        <module name="ArrayTypeStyle"/>
-
-        <!-- "string" == "string" check -->
-        <module name="DescendantToken">
-            <property name="tokens" value="EQUAL,NOT_EQUAL"/>
-            <property name="limitedTokens" value="STRING_LITERAL"/>
-            <property name="maximumNumber" value="0"/>
-            <property name="maximumDepth" value="1"/>
-        </module>
-
-        <module name="Indentation">
-            <property name="basicOffset" value="2"/>
-            <property name="caseIndent" value="2"/>
-            <property name="throwsIndent" value="2"/>
-            <property name="arrayInitIndent" value="2"/>
-            <property name="lineWrappingIndentation" value="2"/>
-        </module>
+    <module name="EmptyForInitializerPad">
+      <property name="severity" value="info"/>
+      <property name="option" value="space"/>
     </module>
+    <module name="EmptyStatement">
+      <property name="severity" value="info"/>
+    </module>
+    <module name="GenericWhitespace">
+      <property name="severity" value="info"/>
+    </module>
+    <module name="IllegalImport">
+      <property name="severity" value="warning"/>
+      <property name="illegalPkgs" value="sun"/>
+    </module>
+    <module name="Indentation">
+      <property name="severity" value="info"/>
+      <property name="caseIndent" value="2"/>
+      <property name="tabWidth" value="2"/>
+      <property name="basicOffset" value="2"/>
+      <property name="braceAdjustment" value="0"/>
+      <property name="lineWrappingIndentation" value="2"/>
+      <property name="forceStrictCondition" value="false"/>
+      <property name="arrayInitIndent" value="2"/>
+      <property name="throwsIndent" value="2"/>
+    </module>
+    <module name="LeftCurly">
+      <property name="severity" value="info"/>
+      <property name="option" value="eol"/>
+      <property name="tokens" value="INTERFACE_DEF,CLASS_DEF,ANNOTATION_DEF,ENUM_DEF,CTOR_DEF,METHOD_DEF,ENUM_CONSTANT_DEF,LITERAL_WHILE,LITERAL_TRY,LITERAL_CATCH,LITERAL_FINALLY,LITERAL_SYNCHRONIZED,LITERAL_SWITCH,LITERAL_DO,LITERAL_IF,LITERAL_ELSE,LITERAL_FOR,STATIC_INIT"/>
+      <property name="maxLineLength" value="80"/>
+      <property name="ignoreEnums" value="true"/>
+    </module>
+    <module name="MethodParamPad">
+      <property name="severity" value="info"/>
+      <property name="option" value="nospace"/>
+      <property name="tokens" value="CTOR_DEF,LITERAL_NEW,METHOD_CALL,METHOD_DEF,SUPER_CTOR_CALL"/>
+      <property name="allowLineBreaks" value="false"/>
+    </module>
+    <module name="ModifierOrder">
+      <property name="severity" value="info"/>
+    </module>
+    <module name="NeedBraces">
+      <property name="severity" value="info"/>
+      <property name="allowSingleLineStatement" value="false"/>
+      <property name="tokens" value="LITERAL_DO,LITERAL_ELSE,LITERAL_FOR,LITERAL_IF,LITERAL_WHILE"/>
+    </module>
+    <module name="NoWhitespaceAfter">
+      <property name="severity" value="info"/>
+      <property name="allowLineBreaks" value="true"/>
+      <property name="tokens" value="BNOT,DEC,DOT,INC,LNOT,UNARY_MINUS,UNARY_PLUS"/>
+    </module>
+    <module name="NoWhitespaceBefore">
+      <property name="severity" value="info"/>
+      <property name="tokens" value="COMMA,SEMI,POST_INC,POST_DEC"/>
+      <property name="allowLineBreaks" value="false"/>
+    </module>
+    <module name="OneStatementPerLine">
+      <property name="severity" value="warning"/>
+    </module>
+    <module name="OperatorWrap">
+      <property name="severity" value="info"/>
+      <property name="option" value="nl"/>
+      <property name="tokens" value="QUESTION,COLON,EQUAL,NOT_EQUAL,DIV,PLUS,MINUS,STAR,MOD,SR,BSR,GE,GT,SL,LE,LT,BXOR,BOR,LOR,BAND,LAND,TYPE_EXTENSION_AND,LITERAL_INSTANCEOF"/>
+    </module>
+    <module name="ParenPad">
+      <property name="severity" value="info"/>
+      <property name="option" value="space"/>
+      <property name="tokens" value="ANNOTATION,ANNOTATION_FIELD_DEF,CTOR_CALL,CTOR_DEF,ENUM_CONSTANT_DEF,EXPR,LITERAL_CATCH,LITERAL_DO,LITERAL_FOR,LITERAL_IF,LITERAL_NEW,LITERAL_SWITCH,LITERAL_SYNCHRONIZED,LITERAL_WHILE,METHOD_CALL,METHOD_DEF,QUESTION,RESOURCE_SPECIFICATION,SUPER_CTOR_CALL"/>
+    </module>
+    <module name="RedundantImport">
+      <property name="severity" value="info"/>
+    </module>
+    <module name="RegexpSinglelineJava">
+      <property name="severity" value="info"/>
+      <property name="message" value="Line has trailing spaces"/>
+      <property name="minimum" value="0"/>
+      <property name="maximum" value="0"/>
+      <property name="ignoreComments" value="true"/>
+      <property name="format" value="\s+$"/>
+      <property name="ignoreCase" value="false"/>
+    </module>
+    <module name="RightCurly">
+      <property name="severity" value="info"/>
+      <property name="tokens" value="LITERAL_TRY,LITERAL_CATCH,LITERAL_FINALLY,LITERAL_IF,LITERAL_ELSE"/>
+      <property name="option" value="same"/>
+      <property name="shouldStartLine" value="true"/>
+    </module>
+    <module name="TypecastParenPad">
+      <property name="severity" value="info"/>
+      <property name="tokens" value="TYPECAST"/>
+      <property name="option" value="nospace"/>
+    </module>
+    <module name="UnusedImports">
+      <property name="severity" value="info"/>
+      <property name="processJavadoc" value="false"/>
+    </module>
+    <module name="WhitespaceAfter">
+      <property name="severity" value="info"/>
+      <property name="tokens" value="COMMA,SEMI,TYPECAST"/>
+    </module>
+    <module name="WhitespaceAround">
+      <property name="severity" value="info"/>
+      <property name="allowEmptyConstructors" value="false"/>
+      <property name="allowEmptyMethods" value="false"/>
+      <property name="tokens" value="ASSIGN,BAND,BAND_ASSIGN,BOR,BOR_ASSIGN,BSR,BSR_ASSIGN,BXOR,BXOR_ASSIGN,COLON,DIV,DIV_ASSIGN,DO_WHILE,EQUAL,GE,GT,LAND,LCURLY,LE,LITERAL_CATCH,LITERAL_DO,LITERAL_ELSE,LITERAL_FINALLY,LITERAL_FOR,LITERAL_IF,LITERAL_RETURN,LITERAL_SWITCH,LITERAL_SYNCHRONIZED,LITERAL_TRY,LITERAL_WHILE,LOR,LT,MINUS,MINUS_ASSIGN,MOD,MOD_ASSIGN,NOT_EQUAL,PLUS,PLUS_ASSIGN,QUESTION,RCURLY,SL,SLIST,SL_ASSIGN,SR,SR_ASSIGN,STAR,STAR_ASSIGN,LITERAL_ASSERT,TYPE_EXTENSION_AND"/>
+      <property name="ignoreEnhancedForColon" value="true"/>
+      <property name="allowEmptyLoops" value="false"/>
+      <property name="allowEmptyTypes" value="false"/>
+    </module>
+  </module>
 </module>
