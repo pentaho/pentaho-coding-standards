@@ -22,7 +22,7 @@
     <property name="checkFormat" value="$1"/>
   </module>
   <module name="SuppressionFilter">
-    <property name="file" value="http://nexus.pentaho.org/content/groups/omni/com/pentaho/pentaho-coding-standards/pentaho-checkstyle-suppressions/1.0.2/pentaho-checkstyle-suppressions-1.0.2.xml"/>
+    <property name="file" value="https://raw.githubusercontent.com/pentaho/pentaho-coding-standards/master/suppressions.xml"/>
   </module>
   <module name="TreeWalker">
     <module name="FileContentsHolder"/>
