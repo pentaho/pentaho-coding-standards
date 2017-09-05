@@ -16,14 +16,13 @@ The Eclipse CheckStyle plugin documentation my be helpful: http://eclipse-cs.sou
 ### Installation (IntelliJ):
 
 - Install the CheckStyle-IDEA plugin. (available in the default public repository)
-- Set IDEA_JDK_64 environment variable to the installation directory of your Java 8 JDK
 - Configure the CheckStyle-IDEA (Preferences -> Other Settings -> CheckStyle).
   - Select "8.0" in the "Checkstyle version" dropdown
   - Select "Only Java sources (including tests) in the "Scan Scope" dropdown
+  - Click "Apply"
   - Select "Use a checkstyle file accessible via HTTP" with the raw github URL:
     https://raw.githubusercontent.com/pentaho/pentaho-coding-standards/master/pentaho_checkStyle.xml
     - Alternatively, you can select "Usa a local Checkstyle file". Clone this repo and use the `pentaho_checkStyle.xml`.
-  - Set the samedir "Property Name" "Value" to "."
 - Configure code style
   - Copy the codeStyleSettings.xml into your IntelliJ project folder (`{{IdeaIntelliJProjectFolder}}/.idea/codeStyleSettings.xml`). Overwrite if it's already there.
   - Open IntelliJ, set the Project Settings -> Code Style -> Scheme to "Project"
