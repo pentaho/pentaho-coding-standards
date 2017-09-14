@@ -7,9 +7,8 @@ CheckStyle will soon be integrated into our build system. Until that time, you'l
 ### Installation (Eclipse):
 
 - Install CheckStyle plugin http://eclipse-cs.sf.net/update/
-- Configure the plugin to use the `pentaho_checkStyle.xml`; give it the raw github URL: https://raw.githubusercontent.com/pentaho/pentaho-coding-standards/master/pentaho_checkStyle.xml
-  (that will also dynamically retrieve the Pentaho suppressions.xml referenced in the checker)
-- Configure the Eclipse Code Formatter to use the attached pentaho_formatter.xml
+- Configure the plugin to use the `checkstyle/pentaho_checks.xml`; give it the raw github URL [here](https://raw.githubusercontent.com/pentaho/pentaho-coding-standards/master/checkstyle/pentaho_checks.xml)  
+- Configure the Eclipse Code Formatter to use the attached `ide/eclipse_formatter.xml`
 
 The Eclipse CheckStyle plugin documentation my be helpful: http://eclipse-cs.sourceforge.net
 
@@ -20,11 +19,10 @@ The Eclipse CheckStyle plugin documentation my be helpful: http://eclipse-cs.sou
   - Select "8.0" in the "Checkstyle version" dropdown
   - Select "Only Java sources (including tests) in the "Scan Scope" dropdown
   - Click "Apply"
-  - Select "Use a checkstyle file accessible via HTTP" with the raw github URL:
-    https://raw.githubusercontent.com/pentaho/pentaho-coding-standards/master/pentaho_checkStyle.xml
-    - Alternatively, you can select "Usa a local Checkstyle file". Clone this repo and use the `pentaho_checkStyle.xml`.
+  - Select "Use a checkstyle file accessible via HTTP" with the raw github URL [here](https://raw.githubusercontent.com/pentaho/pentaho-coding-standards/master/checkstyle/pentaho_checks.xml)
+    - Alternatively, you can select "Use a local Checkstyle file". Clone this repo and use the `checkstyle/pentaho_checks.xml`.
 - Configure code style
-  - Copy the codeStyleSettings.xml into your IntelliJ project folder (`{{IdeaIntelliJProjectFolder}}/.idea/codeStyleSettings.xml`). Overwrite if it's already there.
+  - Copy the`ide/intelliJ_codeStyleSettings.xml` into your IntelliJ project folder (`{{IdeaIntelliJProjectFolder}}/.idea/codeStyleSettings.xml`). Overwrite if it's already there.
   - Open IntelliJ, set the Project Settings -> Code Style -> Scheme to "Project"
 
 ## Additional Information
