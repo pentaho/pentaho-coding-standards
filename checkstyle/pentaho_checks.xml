@@ -21,9 +21,6 @@
     <property name="onCommentFormat" value="CHECKSTYLE:([^:]+):ON"/>
     <property name="checkFormat" value="$1"/>
   </module>
-  <module name="SuppressionFilter">
-    <property name="file" value="https://raw.githubusercontent.com/pentaho/pentaho-coding-standards/master/suppressions.xml"/>
-  </module>
   <module name="TreeWalker">
     <module name="FileContentsHolder"/>
     <module name="ArrayTypeStyle">
