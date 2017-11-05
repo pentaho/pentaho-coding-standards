@@ -1,4 +1,4 @@
-# Introduction to Pentaho Coding Standards
+# Introduction to Hitachi Vantara Coding Standards
 
 Pentaho enforces coding standards and style through the CheckStyle project ( http://checkstyle.sf.net ).
 
