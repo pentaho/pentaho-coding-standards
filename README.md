@@ -25,5 +25,26 @@ The Eclipse CheckStyle plugin documentation my be helpful: http://eclipse-cs.sou
   - Copy the`ide/intelliJ_codeStyleSettings.xml` into your IntelliJ project folder (`{{IdeaIntelliJProjectFolder}}/.idea/codeStyleSettings.xml`). Overwrite if it's already there.
   - Open IntelliJ, set the Project Settings -> Code Style -> Scheme to "Project"
 
+### Installation (Visual Studio Code):
+
+- Install the checkstyle extension
+- Download the checkstyle-8.0-all.jar file (not any other version) from https://sourceforge.net/projects/checkstyle/files/checkstyle/8.0/ and place it in a folder
+- Clone this repository and place in a folder of your choice
+- Within Visual Studio Code, go to File -> Preferences -> Settings
+- Edit your user settings to reflect the following:- 
+```json
+{
+    "editor.tabSize": 2,
+    "editor.wordWrap": "on",
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "checkstyle.configurationPath": "c:\\Users\\USERNAME\\SOMEFOLDER\\pentaho-coding-standards\\checkstyle\\pentaho_checks.xml",
+    "checkstyle.checkstylePath": "C:\\Users\\USERNAME\\SOMEFOLDER\\checkstyle\\checkstyle-8.0-all.jar"
+}
+```
+  - Note, if using Linux/Mac, use forward slashes for folders as per unix norms
+- Save and close this settings file
+- Now open your java file. When you next save it, checkstyle advisories will appear as green underlined warnings within source files, and within the 'Problems' report tab alongside Java compilation issues.
+
 ## Additional Information
 [CheckStyle Tips](https://github.com/pentaho/pentaho-coding-standards/wiki/CheckStyle-Tips) - Learn how to suppress CheckStyle modules for select areas.
