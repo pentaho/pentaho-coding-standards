@@ -10,6 +10,7 @@
     <fileSet>
       <includes>
         <include>checkstyle/**</include>
+        <include>findbugs/**</include>
         <include>pmd/**</include>
         <include>ide/**</include>
       </includes>
