@@ -38,7 +38,7 @@
     <pentaho.private.snapshot.repo>http://nexus.pentaho.org/content/repositories/private-snapshot/</pentaho.private.snapshot.repo>
 
     <build-helper-maven-plugin.version>1.9.1</build-helper-maven-plugin.version>
-    <maven-assembly-plugin.version>3.0.0</maven-assembly-plugin.version>
+    <maven-assembly-plugin.version>3.1.1</maven-assembly-plugin.version>
 
     <license.licenseName>mit</license.licenseName>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
