@@ -1,4 +1,4 @@
-# Introduction to Hitachi Vantara Coding Standards 
+# Introduction to Hitachi Vantara Coding Standards  
 Please check the [wiki](https://github.com/pentaho/pentaho-coding-standards/wiki) for more information on how to structure your project so that it conforms with our standards.
 
 ## CheckStyle
