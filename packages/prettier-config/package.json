@@ -1,0 +1,17 @@
+{
+  "name": "@hitachivantara/prettier-config",
+  "version": "0.1.0",
+  "description": "Hitachi Vantara Default Prettier Configuration",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pentaho/pentaho-coding-standards.git",
+    "directory": "packages/prettier-config"
+  },
+  "publishConfig": {
+    "@hitachivantara:registry": "http://nexus.pentaho.org/repository/public-npm-release/"
+  },
+  "peerDependencies": {
+    "prettier": "^1.19.1"
+  }
+}
