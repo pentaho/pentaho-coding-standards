@@ -5,7 +5,7 @@
 1. Make sure that you have configured the `@hitachivantara` NPM scope.
    Add the following to a file named `.npmrc`, besides `package.json`:
    ```
-   @hitachivantara:registry=http://nexus.pentaho.org/repository/group-public-npm/
+   @hitachivantara:registry=https://nexus.pentaho.org/repository/group-public-npm/
    ```
 
 2. Install the dependency.
