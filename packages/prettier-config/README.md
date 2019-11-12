@@ -18,3 +18,6 @@
    ```js
    module.exports = require("@hitachivantara/prettier-config");
    ```
+   There are other ways to share configurations.
+   See [Sharing Configurations](https://prettier.io/docs/en/configuration.html#sharing-configurations)
+   in Prettier's site for more information.
