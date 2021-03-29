@@ -8,7 +8,6 @@ module.exports = {
   "jsxSingleQuote": false,
   "trailingComma": "none",
   "bracketSpacing": true,
-  "jsxBracketSameLine": true, // not default
   "arrowParens": "avoid",
   "requirePragma": false,
   "insertPragma": false,
