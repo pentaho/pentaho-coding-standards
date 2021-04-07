@@ -9,7 +9,7 @@
     "directory": "packages/prettier-config"
   },
   "publishConfig": {
-    "@hitachivantara:registry": "http://nexus.pentaho.org/repository/public-npm-release/"
+    "@hitachivantara:registry": "https://repo.orl.eng.hitachivantara.com/artifactory/api/npm/pntpub-npm-release-orl/"
   },
   "peerDependencies": {
     "prettier": "^1.19.1"
