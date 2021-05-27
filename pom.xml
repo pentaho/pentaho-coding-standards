@@ -32,10 +32,10 @@
   </distributionManagement>
 
   <properties>
-    <pentaho.public.release.repo>http://nexus.pentaho.org/content/repositories/public-release/</pentaho.public.release.repo>
-    <pentaho.public.snapshot.repo>http://nexus.pentaho.org/content/repositories/public-snapshot/</pentaho.public.snapshot.repo>
-    <pentaho.private.release.repo>http://nexus.pentaho.org/content/repositories/private-release/</pentaho.private.release.repo>
-    <pentaho.private.snapshot.repo>http://nexus.pentaho.org/content/repositories/private-snapshot/</pentaho.private.snapshot.repo>
+    <pentaho.public.release.repo>https://repo.orl.eng.hitachivantara.com/artifactory/pntpub-mvn-dev-orl/</pentaho.public.release.repo>
+    <pentaho.public.snapshot.repo>https://repo.orl.eng.hitachivantara.com/artifactory/pntpub-mvn-snapshot-orl/</pentaho.public.snapshot.repo>
+    <pentaho.private.release.repo>https://repo.orl.eng.hitachivantara.com/artifactory/pntprv-mvn-dev-orl/</pentaho.private.release.repo>
+    <pentaho.private.snapshot.repo>https://repo.orl.eng.hitachivantara.com/artifactory/pntprv-mvn-snapshot-orl/</pentaho.private.snapshot.repo>
 
     <build-helper-maven-plugin.version>1.9.1</build-helper-maven-plugin.version>
     <maven-assembly-plugin.version>3.1.1</maven-assembly-plugin.version>
@@ -130,7 +130,7 @@
     <repository>
       <id>pentaho-public</id>
       <name>Pentaho Public</name>
-      <url>http://nexus.pentaho.org/content/groups/omni/</url>
+      <url>https://repo.orl.eng.hitachivantara.com/artifactory/pnt-mvn/</url>
       <releases>
         <enabled>true</enabled>
         <updatePolicy>daily</updatePolicy>
@@ -141,5 +141,20 @@
       </snapshots>
     </repository>
   </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>pentaho-public-plugins</id>
+      <name>Pentaho Public Plugins</name>
+      <url>https://repo.orl.eng.hitachivantara.com/artifactory/pnt-mvn/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+    </pluginRepository>
+  </pluginRepositories>
+
 
 </project>
