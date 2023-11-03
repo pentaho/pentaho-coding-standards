@@ -12,6 +12,7 @@ CheckStyle will soon be integrated into our build system. Until that time, you'l
 The Eclipse CheckStyle plugin documentation my be helpful: http://eclipse-cs.sourceforge.net
 
 ### Installation (IntelliJ):
+#### Configure CheckStyle
 - Install the CheckStyle-IDEA plugin. (available in the default public repository)
 - Configure the CheckStyle-IDEA (Preferences -> Other Settings -> CheckStyle).
   - Select "8.0" in the "Checkstyle version" dropdown
@@ -19,6 +20,6 @@ The Eclipse CheckStyle plugin documentation my be helpful: http://eclipse-cs.sou
   - Click "Apply"
   - Select "Use a checkstyle file accessible via HTTP" with the raw github URL [here](https://raw.githubusercontent.com/pentaho/pentaho-coding-standards/master/checkstyle/pentaho_checks.xml)
     - Alternatively, you can select "Use a local Checkstyle file". Clone this repo and use the `checkstyle/pentaho_checks.xml`.
-- Configure code style
+#### Configure Code Style
   - Copy the`ide/intelliJ_codeStyleSettings.xml` into your IntelliJ project folder (`{{IdeaIntelliJProjectFolder}}/.idea/codeStyleSettings.xml`). Overwrite if it's already there.
   - Open IntelliJ, set the Project Settings -> Code Style -> Scheme to "Project"
