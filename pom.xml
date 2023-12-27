@@ -6,7 +6,7 @@
 
   <groupId>org.pentaho</groupId>
   <artifactId>coding-standards</artifactId>
-  <version>10.1.0.0-SNAPSHOT</version>
+  <version>10.1.0.0-158</version>
   <packaging>pom</packaging>
 
   <name>Pentaho Coding Standards</name>
