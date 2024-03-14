@@ -3,11 +3,6 @@
           "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
           "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
 <module name="Checker">
-  <module name="SuppressWithNearbyCommentFilter">
-    <property name="commentFormat" value="CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES"/>
-    <property name="checkFormat" value="$1"/>
-    <property name="influenceFormat" value="$2"/>
-  </module>
   <module name="NewlineAtEndOfFile">
     <property name="severity" value="info"/>
     <property name="fileExtensions" value="java"/>
@@ -16,13 +11,17 @@
   <module name="FileTabCharacter">
     <property name="severity" value="info"/>
   </module>
-  <module name="SuppressionCommentFilter">
-    <property name="offCommentFormat" value="CHECKSTYLE:([^:]+):OFF"/>
-    <property name="onCommentFormat" value="CHECKSTYLE:([^:]+):ON"/>
-    <property name="checkFormat" value="$1"/>
-  </module>
   <module name="TreeWalker">
-    <module name="FileContentsHolder"/>
+    <module name="SuppressWithNearbyCommentFilter">
+      <property name="commentFormat" value="CHECKSTYLE IGNORE (\w+) FOR NEXT (\d+) LINES"/>
+      <property name="checkFormat" value="$1"/>
+      <property name="influenceFormat" value="$2"/>
+    </module>
+	<module name="SuppressionCommentFilter">
+      <property name="offCommentFormat" value="CHECKSTYLE:([^:]+):OFF"/>
+      <property name="onCommentFormat" value="CHECKSTYLE:([^:]+):ON"/>
+      <property name="checkFormat" value="$1"/>
+    </module>
     <module name="ArrayTypeStyle">
       <property name="severity" value="info"/>
       <property name="javaStyle" value="true"/>
@@ -71,7 +70,6 @@
       <property name="severity" value="info"/>
       <property name="option" value="eol"/>
       <property name="tokens" value="INTERFACE_DEF,CLASS_DEF,ANNOTATION_DEF,ENUM_DEF,CTOR_DEF,METHOD_DEF,ENUM_CONSTANT_DEF,LITERAL_WHILE,LITERAL_TRY,LITERAL_CATCH,LITERAL_FINALLY,LITERAL_SYNCHRONIZED,LITERAL_SWITCH,LITERAL_DO,LITERAL_IF,LITERAL_ELSE,LITERAL_FOR,STATIC_INIT"/>
-      <property name="maxLineLength" value="80"/>
       <property name="ignoreEnums" value="true"/>
     </module>
     <module name="MethodParamPad">
@@ -127,7 +125,6 @@
       <property name="severity" value="info"/>
       <property name="tokens" value="LITERAL_TRY,LITERAL_CATCH,LITERAL_FINALLY,LITERAL_IF,LITERAL_ELSE"/>
       <property name="option" value="same"/>
-      <property name="shouldStartLine" value="true"/>
     </module>
     <module name="TypecastParenPad">
       <property name="severity" value="info"/>

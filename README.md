@@ -14,7 +14,7 @@ The Eclipse CheckStyle plugin documentation my be helpful: http://eclipse-cs.sou
 ### Installation (IntelliJ):
 - Install the CheckStyle-IDEA plugin. (available in the default public repository)
 - Configure the CheckStyle-IDEA (Preferences -> Other Settings -> CheckStyle).
-  - Select "8.0" in the "Checkstyle version" dropdown
+  - Select "10.13.0" in the "Checkstyle version" dropdown
   - Select "Only Java sources (including tests) in the "Scan Scope" dropdown
   - Click "Apply"
   - Select "Use a checkstyle file accessible via HTTP" with the raw github URL [here](https://raw.githubusercontent.com/pentaho/pentaho-coding-standards/master/checkstyle/pentaho_checks.xml)
