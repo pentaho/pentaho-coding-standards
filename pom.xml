@@ -10,7 +10,7 @@
   <packaging>pom</packaging>
 
   <name>Pentaho Coding Standards</name>
-
+<!---->
   <scm>
     <connection>scm:git:git@github.com:pentaho/pentaho-coding-standards.git</connection>
     <url>https://github.com/pentaho/pentaho-coding-standards</url>
