@@ -23,3 +23,9 @@ The Eclipse CheckStyle plugin documentation my be helpful: http://eclipse-cs.sou
 #### Configure Code Style
   - Copy the`ide/intelliJ_codeStyleSettings.xml` into your IntelliJ project folder (`{{IdeaIntelliJProjectFolder}}/.idea/codeStyleSettings.xml`). Overwrite if it's already there.
   - Open IntelliJ, set the Project Settings -> Code Style -> Scheme to "Project"
+
+### Installation (VSCode):
+To use the formatting with Visual Studio Code add the following property to your user or workspace configuration. The eclipse configuration file is supported.
+```
+"java.format.settings.url": "https://raw.githubusercontent.com/pentaho/pentaho-coding-standards/refs/heads/master/ide/eclipse_formatter.xml"
+```
