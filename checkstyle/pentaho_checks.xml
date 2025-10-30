@@ -148,5 +148,12 @@
       <property name="allowEmptyLoops" value="false"/>
       <property name="allowEmptyTypes" value="false"/>
     </module>
+    <module name="EmptyLineSeparator">
+      <property name="severity" value="info"/>
+      <property name="tokens" value="VARIABLE_DEF, METHOD_DEF, CTOR_DEF, ENUM_DEF"/>
+      <property name="allowNoEmptyLineBetweenFields" value="true"/>
+      <property name="allowMultipleEmptyLines" value="false"/>
+      <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
+    </module>
   </module>
 </module>
