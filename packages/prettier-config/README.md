@@ -1,4 +1,4 @@
-# Hitachi Vantara Default Pretty Configuration
+# Pentaho Default Pretty Configuration
 
 ## How to Use
 
