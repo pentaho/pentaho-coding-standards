@@ -13,6 +13,8 @@ testdata.script
 .project
 .DS_Store
 .idea
+.vscode
+.venv
 projects/
 plugins/
 build-res/dojo-*
