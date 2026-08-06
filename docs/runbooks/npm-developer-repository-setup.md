@@ -5,8 +5,8 @@ description: Configure, verify, renew, and remove user-level access to Pentaho's
 status: draft
 owner: Engineering
 tags: [npm, developer-setup, repository, authentication]
-timestamp: 2026-07-31T15:53:10Z
-last_reviewed: 2026-07-31
+timestamp: 2026-08-06T19:13:18Z
+last_reviewed: 2026-08-06
 ---
 
 # Preconditions
@@ -23,13 +23,7 @@ last_reviewed: 2026-07-31
    npm config set registry=https://repo.pentaho.com/artifactory/api/npm/npm/ --location=user
    ```
 
-2. Prevent registry addresses from being stored in `package-lock.json`:
-
-   ```shell
-   npm config set omit-lockfile-registry-resolved=true --location=user
-   ```
-
-3. Add or renew authentication:
+2. Add or renew authentication:
 
    ```shell
    npm login --registry=https://repo.pentaho.com/artifactory/api/npm/npm/ --auth-type=web
@@ -38,10 +32,10 @@ last_reviewed: 2026-07-31
    The `--registry` option selects the authentication target. It does not replace the default `registry` entry or
    create a scope-specific registry entry. Successful login writes or replaces credentials for that repository.
 
-4. Compare `~/.npmrc` with the
-   [required structure and example](../standards/npm-repository-configuration.md#required-npmrc-structure).
+3. Compare `~/.npmrc` with the
+   [required user-level structure](../standards/npm-repository-configuration.md#user-level-example).
 
-5. Remove any scope-specific registry entries, such as `@pentaho-apps:registry` or `@emotion:registry`.
+4. Remove any scope-specific registry entries, such as `@pentaho-apps:registry` or `@emotion:registry`.
 
 # Verification
 
@@ -51,13 +45,7 @@ last_reviewed: 2026-07-31
    npm config get registry
    ```
 
-2. Confirm lockfile behavior:
-
-   ```shell
-   npm config get omit-lockfile-registry-resolved
-   ```
-
-3. Confirm authentication:
+2. Confirm authentication:
 
    ```shell
    npm whoami --registry=https://repo.pentaho.com/artifactory/api/npm/npm/
@@ -70,7 +58,6 @@ Restore the backed-up `~/.npmrc`. If no prior file existed, log out and delete t
 ```shell
 npm logout --registry=https://repo.pentaho.com/artifactory/api/npm/npm/
 npm config delete registry --location=user
-npm config delete omit-lockfile-registry-resolved --location=user
 ```
 
 # Escalation
