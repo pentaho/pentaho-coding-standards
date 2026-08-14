@@ -5,8 +5,21 @@ description: Configure, verify, renew, and remove user-level access to Pentaho's
 status: draft
 owner: Engineering
 tags: [npm, developer-setup, repository, authentication]
-timestamp: 2026-08-06T19:13:18Z
-last_reviewed: 2026-08-06
+generated: { by: human:engineering, at: 2026-08-14T00:00:00Z }
+last_reviewed: 2026-08-14
+sources:
+  - id: npmrc
+    resource: "https://docs.npmjs.com/cli/v12/configuring-npm/npmrc/"
+    title: npmrc files
+  - id: npm-config
+    resource: "https://docs.npmjs.com/cli/v12/commands/npm-config/"
+    title: npm config command
+  - id: npm-login
+    resource: "https://docs.npmjs.com/cli/v12/commands/npm-login/"
+    title: npm login command
+  - id: npm-logout
+    resource: "https://docs.npmjs.com/cli/v12/commands/npm-logout/"
+    title: npm logout command
 ---
 
 # Preconditions
@@ -68,15 +81,3 @@ fails through the default repository.
 # Governing Documents
 
 - [npm Repository Configuration Standard](../standards/npm-repository-configuration.md)
-
-# Citations
-
-1. [npmrc files][npmrc]
-2. [`npm config`][npm-config]
-3. [`npm login`][npm-login]
-4. [`npm logout`][npm-logout]
-
-[npmrc]: https://docs.npmjs.com/cli/v12/configuring-npm/npmrc/
-[npm-config]: https://docs.npmjs.com/cli/v12/commands/npm-config/
-[npm-login]: https://docs.npmjs.com/cli/v12/commands/npm-login/
-[npm-logout]: https://docs.npmjs.com/cli/v12/commands/npm-logout/

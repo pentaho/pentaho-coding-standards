@@ -91,18 +91,20 @@ A concept has one owner. Standards set policy; runbooks give executable steps; a
 
 ## Metadata
 
-All Pentaho concepts MUST have non-empty string `type`, `title`, and `description` fields.
+All Pentaho concepts MUST have non-empty string `type`, `title`, and `description` fields. These identify a concept for routing, display, and concise discovery, respectively.
 
 Use these fields when meaningful:
 
-- `status`: lifecycle state. When present, it MUST be a non-empty string using an allowed value.
-- `owner`: accountable team or role. When present, it MUST be a non-empty string.
-- `tags`: YAML list of non-empty strings for cross-cutting discovery.
-- `generated`: mapping with non-empty `by` actor and ISO 8601 date-time `at` for last meaningful change.
-- `sources`: provenance entries with a `resource` and an `id` when cited by a footnote.
-- `created`: ISO 8601 date for decisions and durable governance documents. When present, it MUST be an ISO 8601 date.
-- `last_reviewed`: ISO 8601 date for standards, runbooks, and risk-sensitive reference. When present, it MUST be an ISO 8601 date.
-- `resource`: canonical URI for the described asset. When present, it MUST be a non-empty string.
+- `status`: lifecycle signal for whether content is ready, retired, or replaced. When present, it MUST be a non-empty string using an allowed value.
+- `owner`: team or role accountable for review, correction, and escalation. When present, it MUST be a non-empty string.
+- `tags`: YAML list of short labels for cross-cutting discovery; they do not define access or ownership.
+- `generated`: provenance of current content. Its non-empty `by` actor identifies who or what made the change, and ISO 8601 date-time `at` records its last meaningful change; it does not imply automated generation.
+- `verified`: independent confirmation events for current content. Each event identifies a verifier and time; verification is distinct from authorship and is optional.
+- `sources`: materials from which the concept derives. Each entry has a `resource`; its stable `id` joins a Markdown footnote to the specific claim it supports.
+- `created`: ISO 8601 date when a decision or durable governance record was first established, distinct from later content changes. When present, it MUST be an ISO 8601 date.
+- `last_reviewed`: ISO 8601 date of the latest deliberate suitability check, which may occur without a content change. Use it for standards, runbooks, and risk-sensitive reference. When present, it MUST be an ISO 8601 date.
+- `resource`: canonical URI for the asset the concept describes, rather than evidence supporting a claim. When present, it MUST be a non-empty string.
+- `stale_after`: ISO 8601 date on or after which consumers should treat content as stale. Use it for facts with a known review deadline.
 
 Allowed status values are `draft`, `stable`, `deprecated`, and `superseded` for standards, architecture, reference, and runbooks. Decisions use `proposed`, `accepted`, `deprecated`, and `superseded`.
 

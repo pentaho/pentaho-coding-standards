@@ -5,8 +5,42 @@ description: Defines project, dependency-installation, and publishing rules for 
 status: draft
 owner: Engineering
 tags: [npm, ci, publishing, repository, security]
-timestamp: 2026-08-07T09:47:00Z
-last_reviewed: 2026-08-07
+generated: { by: human:engineering, at: 2026-08-14T00:00:00Z }
+last_reviewed: 2026-08-14
+sources:
+  - id: npm-config
+    resource: "https://docs.npmjs.com/cli/v12/commands/npm-config/"
+    title: npm config command
+  - id: npm-ci
+    resource: "https://docs.npmjs.com/cli/v12/commands/npm-ci/"
+    title: npm ci command
+  - id: publish-config
+    resource: "https://docs.npmjs.com/cli/v12/configuring-npm/package-json/#publishconfig"
+    title: package.json publishConfig field
+  - id: npm-publish
+    resource: "https://docs.npmjs.com/cli/v12/commands/npm-publish/"
+    title: npm publish command
+  - id: npm-run
+    resource: "https://docs.npmjs.com/cli/v12/commands/npm-run/"
+    title: npm run argument forwarding
+  - id: trusted-publishing
+    resource: "https://docs.npmjs.com/trusted-publishers/"
+    title: npm trusted publishing with OIDC
+  - id: app-shell-publish
+    resource: "https://github.com/pentaho/pentaho-app-shell/blob/92be0b5/.github/workflows/publish-npm.yml"
+    title: Pentaho App Shell npm publish workflow
+  - id: actions-common-publish
+    resource: "https://github.com/pentaho/actions-common/blob/stable/.github/workflows/publish-npm.yml"
+    title: Shared Pentaho npm publish workflow
+  - id: hv-uikit
+    resource: "https://github.com/pentaho/hv-uikit-react"
+    title: Pentaho UI Kit repository
+  - id: hv-uikit-release
+    resource: "https://github.com/pentaho/hv-uikit-react/blob/master/.github/workflows/release.yml"
+    title: Pentaho UI Kit release workflow
+  - id: fork-approval
+    resource: "https://docs.github.com/en/actions/how-tos/manage-workflow-runs/approve-runs-from-forks"
+    title: Approving workflow runs from public forks
 ---
 
 # Purpose
@@ -206,28 +240,3 @@ Deviations require Engineering management approval and a documented rationale.
 - [npm Projects And Packages Standard](npm-projects-and-packages.md)
 - [npm Repository Configuration Standard](npm-repository-configuration.md)
 
-# Citations
-
-1. [`npm config`][npm-config]
-2. [`npm ci`][npm-ci]
-3. [`package.json` `publishConfig` field][publish-config]
-4. [`npm publish` and its `registry` option][npm-publish]
-5. [Pentaho App Shell npm publish workflow][app-shell-publish]
-6. [Shared Pentaho npm publish workflow][actions-common-publish]
-7. [`npm run` argument forwarding][npm-run]
-8. [npm trusted publishing with OIDC][trusted-publishing]
-9. [Pentaho UI Kit repository][hv-uikit]
-10. [Pentaho UI Kit release workflow][hv-uikit-release]
-11. [Approving workflow runs from public forks][fork-approval]
-
-[npm-config]: https://docs.npmjs.com/cli/v12/commands/npm-config/
-[publish-config]: https://docs.npmjs.com/cli/v12/configuring-npm/package-json/#publishconfig
-[npm-ci]: https://docs.npmjs.com/cli/v12/commands/npm-ci/
-[npm-publish]: https://docs.npmjs.com/cli/v12/commands/npm-publish/
-[npm-run]: https://docs.npmjs.com/cli/v12/commands/npm-run/
-[trusted-publishing]: https://docs.npmjs.com/trusted-publishers/
-[app-shell-publish]: https://github.com/pentaho/pentaho-app-shell/blob/92be0b5/.github/workflows/publish-npm.yml
-[actions-common-publish]: https://github.com/pentaho/actions-common/blob/stable/.github/workflows/publish-npm.yml
-[hv-uikit]: https://github.com/pentaho/hv-uikit-react
-[hv-uikit-release]: https://github.com/pentaho/hv-uikit-react/blob/master/.github/workflows/release.yml
-[fork-approval]: https://docs.github.com/en/actions/how-tos/manage-workflow-runs/approve-runs-from-forks

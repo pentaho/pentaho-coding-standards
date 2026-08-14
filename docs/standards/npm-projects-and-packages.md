@@ -5,8 +5,15 @@ description: Defines npm package and project categories and package naming and p
 status: draft
 owner: Engineering
 tags: [npm, packages, governance]
-timestamp: 2026-08-06T22:19:00Z
-last_reviewed: 2026-08-06
+generated: { by: human:engineering, at: 2026-08-14T00:00:00Z }
+last_reviewed: 2026-08-14
+sources:
+  - id: npm-scope
+    resource: "https://docs.npmjs.com/cli/v12/using-npm/scope/"
+    title: npm scopes
+  - id: package-private
+    resource: "https://docs.npmjs.com/cli/v12/configuring-npm/package-json/#private"
+    title: package.json private field
 ---
 
 # Purpose
@@ -75,10 +82,3 @@ public-distribution project that mixes internal and public-distribution packages
 
 Deviations require Engineering management approval and a documented rationale.
 
-# Citations
-
-1. [npm scopes][npm-scope]
-2. [`package.json` `private` field][package-private]
-
-[npm-scope]: https://docs.npmjs.com/cli/v12/using-npm/scope/
-[package-private]: https://docs.npmjs.com/cli/v12/configuring-npm/package-json/#private

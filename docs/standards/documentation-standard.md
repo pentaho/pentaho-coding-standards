@@ -2,11 +2,11 @@
 type: standard
 title: Project Documentation Standard
 description: Governs scope, compliance, maintenance, and exceptions for durable repository documentation.
-status: active
+status: stable
 owner: Engineering
 tags: [documentation, governance, okf]
-timestamp: 2026-07-29T00:00:00Z
-last_reviewed: 2026-07-29
+generated: { by: human:engineering, at: 2026-08-14T00:00:00Z }
+last_reviewed: 2026-08-14
 ---
 
 # Purpose

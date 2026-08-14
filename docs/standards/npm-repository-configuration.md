@@ -5,8 +5,36 @@ description: Defines governing npm dependency repository and configuration polic
 status: draft
 owner: Engineering
 tags: [npm, dependencies, repository, security, governance]
-timestamp: 2026-08-07T09:47:00Z
-last_reviewed: 2026-08-07
+generated: { by: human:engineering, at: 2026-08-14T00:00:00Z }
+last_reviewed: 2026-08-14
+sources:
+  - id: npmrc
+    resource: "https://docs.npmjs.com/cli/v12/configuring-npm/npmrc/"
+    title: npmrc files
+  - id: registry
+    resource: "https://docs.npmjs.com/cli/v12/using-npm/config#registry"
+    title: npm registry configuration
+  - id: omit-lockfile-registry-resolved
+    resource: "https://docs.npmjs.com/cli/v12/using-npm/config#omit-lockfile-registry-resolved"
+    title: npm omit-lockfile-registry-resolved configuration
+  - id: package-lock
+    resource: "https://docs.npmjs.com/cli/v12/configuring-npm/package-lock-json/"
+    title: package-lock.json format
+  - id: npm-ci
+    resource: "https://docs.npmjs.com/cli/v12/commands/npm-ci/"
+    title: npm ci command
+  - id: package-dependencies
+    resource: "https://docs.npmjs.com/cli/v12/configuring-npm/package-json/#dependencies"
+    title: package.json dependency fields
+  - id: jfrog-remote-repositories
+    resource: "https://docs.jfrog.com/artifactory/docs/remote-repositories"
+    title: JFrog remote repositories
+  - id: jfrog-licenses
+    resource: "https://jfrog.com/help/r/jfrog-xray-documentation/license-risk-information"
+    title: JFrog Xray license information
+  - id: npm-scripts
+    resource: "https://docs.npmjs.com/cli/v12/using-npm/scripts/"
+    title: npm package lifecycle scripts
 ---
 
 # Purpose
@@ -171,24 +199,3 @@ and compliance metadata. Developers and DevOps operators must maintain valid use
 
 Deviations require Engineering management approval and a documented rationale.
 
-# Citations
-
-1. [npmrc files][npmrc]
-2. [npm `registry` configuration][registry]
-3. [npm `omit-lockfile-registry-resolved` configuration][omit-lockfile-registry-resolved]
-4. [`package-lock.json` format, including `resolved` and `integrity`][package-lock]
-5. [`npm ci`][npm-ci]
-6. [`package.json` dependency fields][package-dependencies]
-7. [JFrog remote repositories and artifact caching][jfrog-remote-repositories]
-8. [JFrog Xray license information][jfrog-licenses]
-9. [npm package lifecycle scripts][npm-scripts]
-
-[npmrc]: https://docs.npmjs.com/cli/v12/configuring-npm/npmrc/
-[registry]: https://docs.npmjs.com/cli/v12/using-npm/config#registry
-[omit-lockfile-registry-resolved]: https://docs.npmjs.com/cli/v12/using-npm/config#omit-lockfile-registry-resolved
-[package-lock]: https://docs.npmjs.com/cli/v12/configuring-npm/package-lock-json/
-[npm-ci]: https://docs.npmjs.com/cli/v12/commands/npm-ci/
-[package-dependencies]: https://docs.npmjs.com/cli/v12/configuring-npm/package-json/#dependencies
-[jfrog-remote-repositories]: https://docs.jfrog.com/artifactory/docs/remote-repositories
-[jfrog-licenses]: https://jfrog.com/help/r/jfrog-xray-documentation/license-risk-information
-[npm-scripts]: https://docs.npmjs.com/cli/v12/using-npm/scripts/

@@ -2,11 +2,11 @@
 type: standard
 title: Engineering Best Practices For Incremental Legacy Code Improvement
 description: Defines safe, incremental engineering practices to improve legacy code while delivering features and minimizing regression risk.
-status: active
+status: stable
 owner: Engineering
 tags: [engineering, legacy-code, refactoring, quality]
-timestamp: 2026-07-29T00:00:00Z
-last_reviewed: 2026-07-29
+generated: { by: human:engineering, at: 2026-08-14T00:00:00Z }
+last_reviewed: 2026-08-14
 ---
 
 # Purpose

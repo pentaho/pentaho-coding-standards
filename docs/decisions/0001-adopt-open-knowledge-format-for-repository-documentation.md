@@ -6,7 +6,7 @@ status: accepted
 owner: Engineering
 tags: [documentation, adr, okf]
 created: 2026-07-29
-timestamp: 2026-07-29T00:00:00Z
+generated: { by: human:engineering, at: 2026-08-14T00:00:00Z }
 ---
 
 # Context
