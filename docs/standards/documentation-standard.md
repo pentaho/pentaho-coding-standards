@@ -1,7 +1,7 @@
 ---
 type: standard
 title: Project Documentation Standard
-description: Defines required structure, metadata, and maintenance rules for repository documentation.
+description: Governs scope, compliance, maintenance, and exceptions for durable repository documentation.
 status: active
 owner: Engineering
 tags: [documentation, governance, okf]
@@ -11,25 +11,28 @@ last_reviewed: 2026-07-29
 
 # Purpose
 
-Define mandatory conventions for repository documentation so guidance is consistent, reviewable, and easy to navigate.
+Define mandatory governance for durable repository documentation so guidance remains consistent, reviewable, and easy to navigate.
 
 # Rules
 
-1. Project documentation must live under [docs/index.md](../index.md) and follow Open Knowledge Format conventions.
-2. Every concept document must include YAML frontmatter with non-empty type, title, and description fields.
-3. Concept types must be one of: standard, architecture, decision, reference, runbook.
-4. Decision records must be created under [docs/decisions/index.md](../decisions/index.md) for material technical or governance changes.
-5. Decision filenames must use zero-padded sequence numbers, starting at 0001, followed by a hyphenated slug.
-6. Index files must be updated when active concepts are added, removed, or materially renamed.
-7. Documentation updates must pass Pentaho profile validation before merge.
+1. This standard applies to durable repository knowledge. Root README files, generated documentation, and third-party documentation are out of scope unless they are maintained as concepts in a documentation bundle.
+2. In-scope documentation must live in an approved documentation bundle and conform to the [Pentaho OKF Profile](../reference/pentaho-okf-profile.md).
+3. Update the closest governing concept and relevant indexes when documentation is added, removed, renamed, or materially changed.
+4. Record material technical, governance, trade-off, reversal, or supersession decisions in [docs/decisions/](../decisions/index.md), together with updates to affected governing concepts whenever practical.
+5. Documentation changes must pass Pentaho profile validation with no errors before merge. Address migration warnings when materially updating a legacy concept.
+6. Exceptions must be written, approved by Engineering management, and identify their justification, scope, accountable owner, and remediation date. Record material exceptions in a decision record.
 
 # Rationale
 
-A single documentation standard prevents drift across modules and keeps policy, facts, procedures, architecture, and rationale separated by purpose.
+A single governance standard prevents drift across modules while the profile provides one canonical format contract. Separating policy from format detail keeps active requirements concise and prevents duplicated rules from diverging.
 
 # Exceptions
 
-Temporary exceptions require approval from Engineering management and must be captured in an ADR with remediation timing.
+Exceptions are temporary. They must meet rule 6 and be removed or renewed before their remediation date. An expired exception does not authorize continued non-compliance.
+
+# Related Documents
+
+- [Pentaho OKF Profile](../reference/pentaho-okf-profile.md)
 
 # Related Decisions
 
