@@ -3,6 +3,8 @@
 ## Active Concepts
 
 - [Documentation Standard](documentation-standard.md) - Rules for authoring and maintaining project documentation.
+- [Conventional Commits Standard](conventional-commits.md) - Defines required commit-message structure and content for
+  Pentaho codebases.
 - [Engineering Best Practices For Incremental Legacy Code Improvement](engineering-best-practices.md) - Safe,
   incremental modernization rules for legacy code during normal delivery work.
 - [npm Projects And Packages Standard](npm-projects-and-packages.md) - npm package and project categories and package
