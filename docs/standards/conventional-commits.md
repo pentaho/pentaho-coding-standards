@@ -5,7 +5,7 @@ description: Defines required commit-message structure and content for Pentaho c
 status: draft
 owner: Engineering
 tags: [commits, conventional-commits, jira, collaboration, release]
-generated: { by: human:engineering, at: 2026-09-08T16:41:18Z }
+generated: { by: human:engineering, at: 2026-09-08T17:35:53Z }
 last_reviewed: 2026-09-08
 sources:
   - id: conventional-commits
@@ -75,6 +75,23 @@ collaborators. Repository-specific standards may add narrower requirements but m
    `build` for dependency or build-tool maintenance that does not remediate a security defect.
 8. Avoid `chore` whenever a more specific allowed type accurately describes the change. Use `chore` only as a
    last-resort classification for necessary maintenance that fits no other allowed type.
+
+## Automated Subject Validation
+
+The rules in this standard are normative. The following JavaScript-compatible regular expression is a non-normative
+implementation aid for validating a subject after extracting its first line:
+
+```text
+^(?:build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(?:\([a-z0-9][a-z0-9._/-]*\))?!?: [a-z](?:[^\n\[\]]*[^\s.\n\[\]])?(?: \[[A-Z][A-Z0-9]*-[0-9]+\](?:\[[A-Z][A-Z0-9]*-[0-9]+\])*)?$
+```
+
+It checks permitted types, lowercase scopes, optional breaking-change notation, lowercase descriptions without a
+trailing period, and zero or more adjacent Jira identifiers. It reserves square brackets for Jira identifiers. A
+checker MUST validate the subject line only; it MUST not apply this expression independently to body or footer lines.
+
+The expression does not determine whether a Jira issue owns the work, whether a type accurately describes the change,
+or whether a breaking change includes the required `BREAKING CHANGE:` footer. Tooling and review MUST enforce those
+requirements separately.
 
 ## Breaking Changes
 
