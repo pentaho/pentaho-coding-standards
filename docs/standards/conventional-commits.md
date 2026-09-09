@@ -5,7 +5,7 @@ description: Defines required commit-message structure and content for Pentaho c
 status: draft
 owner: Engineering
 tags: [commits, conventional-commits, jira, collaboration, release]
-generated: { by: human:engineering, at: 2026-09-08T17:35:53Z }
+generated: { by: human:engineering, at: 2026-09-09T16:39:59Z }
 last_reviewed: 2026-09-08
 sources:
   - id: conventional-commits
@@ -75,6 +75,24 @@ collaborators. Repository-specific standards may add narrower requirements but m
    `build` for dependency or build-tool maintenance that does not remediate a security defect.
 8. Avoid `chore` whenever a more specific allowed type accurately describes the change. Use `chore` only as a
    last-resort classification for necessary maintenance that fits no other allowed type.
+
+## Backports
+
+A backport MUST retain the source commit's type, optional scope, and description. It MUST replace the source Jira issue
+identifier with only the owning release Jira issue identifier. Do not add `backport of` or the source Jira issue
+identifier to the subject; record the backport relationship in Jira instead.
+
+For example, if the commit to `master` is:
+
+```text
+fix: handle null values in report parameters [BACKLOG-126]
+```
+
+its respective backport is:
+
+```text
+fix: handle null values in report parameters [SP-126]
+```
 
 ## Automated Subject Validation
 
