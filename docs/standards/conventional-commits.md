@@ -56,7 +56,7 @@ collaborators. Repository-specific standards may add narrower requirements but m
 1. The subject MUST use this format:
 
    ```text
-   <type>[optional (<scope>)][optional !]: <description> [optional <JIRA-ID>]...
+   <type>[optional (<scope>)][optional !]: <description> [optional [<JIRA-ID>]]...
    ```
 
 2. `type` MUST be one of `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, or
