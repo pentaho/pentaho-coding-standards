@@ -5,7 +5,7 @@ description: Defines required commit-message structure and content for Pentaho c
 status: draft
 owner: Engineering
 tags: [commits, conventional-commits, jira, collaboration, release]
-generated: { by: human:engineering, at: 2026-09-09T16:39:59Z }
+generated: { by: human:engineering, at: 2026-09-09T21:35:17Z }
 last_reviewed: 2026-09-08
 sources:
   - id: conventional-commits
@@ -14,9 +14,6 @@ sources:
   - id: semantic-versioning
     resource: "https://semver.org/"
     title: Semantic Versioning 2.0.0
-  - id: git-trailers
-    resource: "https://git-scm.com/docs/git-interpret-trailers"
-    title: git interpret-trailers
   - id: commitlint-conventional
     resource: "https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional"
     title: commitlint conventional configuration
@@ -30,6 +27,9 @@ sources:
 Define a consistent, searchable commit history for every Pentaho codebase. Small, self-contained commits with clear
 messages make changes easier to review, trace to Jira work, revert, release, and understand.
 
+For the general Conventional Commits specification, see
+[Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/).
+
 # Applicability
 
 This standard applies to every commit authored for a Pentaho codebase, including commits created by human and AI code
@@ -39,17 +39,14 @@ collaborators. Repository-specific standards may add narrower requirements but m
 
 ## Commit Content
 
-1. Each commit MUST contain one logical, self-contained change. Split unrelated changes into separate commits.
-2. A commit MUST describe both what changed and why when the subject alone does not make the reason clear.
-3. A commit SHOULD include the Jira issue identifier for the work in its subject, using `[BACKLOG-123]` syntax. When
-   work has an owning Jira issue, its commit MUST use that issue's identifier; do not invent an identifier. A commit
-   MAY include additional directly related Jira identifiers. Put every identifier at the end of the subject in adjacent
-   brackets, such as `[BACKLOG-123][BACKLOG-456]`. A Jira identifier MUST use an uppercase project key of letters and
-   digits, followed by a hyphen and one or more digits: `[<PROJECT-KEY>-<NUMBER>]`. Do not create a Jira issue solely
-   to satisfy this convention. Automation-originated maintenance, such as a Dependabot patch dependency upgrade, MAY
-   omit a Jira identifier only when it has no owning Jira issue.
-4. Commits that are distinct by intent SHOULD remain distinct in a pull request. For example, keep characterization
-   tests, refactoring, and behavior changes separate when practical.
+1. Each commit SHOULD contain one logical, self-contained change. Split unrelated changes into separate commits.
+2. A commit MUST use exactly one type that represents its primary intent. It MUST NOT combine or compose types.
+3. Commits with independent intents or types SHOULD be separate. Closely coupled supporting changes MAY remain in one
+   commit when splitting them would make review, testing, or backporting worse. For example, keep characterization
+   tests, refactoring, formatting, and behavior changes separate when practical.
+4. A pull request MAY contain commits of multiple types.
+5. A commit MUST describe both what changed and why when the subject alone does not make the reason clear.
+6. A commit SHOULD include its owning Jira issue identifier in the subject.
 
 ## Subject Format
 
@@ -60,21 +57,25 @@ collaborators. Repository-specific standards may add narrower requirements but m
    ```
 
 2. `type` MUST be one of `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, or
-   `test`.[^commitlint-conventional]
-3. `scope` MAY identify the affected component, package, Maven module, layer, or area, such as `frontend`, `backend`,
-   `api`, or `authentication`. Use `deps` for a dependency change. When a commit affects one Maven module, use that
-   module's artifact identifier as the scope when it improves discovery. Keep scopes short, lowercase, and meaningful to
-   repository contributors.
+   `test`.[^commitlint-conventional] Use the type guidance below to select the appropriate type.
+3. `scope` is optional. Use it only when it clearly identifies the affected area, such as `api`, `frontend`, or
+   `backend`. Use `deps` for dependency changes. A repository MAY define a scope vocabulary; use it when available.
 4. `description` MUST concisely state the change in the imperative mood. Start it with a lowercase letter, do not end it
    with a period, and do not repeat the type, scope, or Jira identifier.
-5. Use `feat` for a new user- or consumer-visible capability and `fix` for a bug correction. Use the other types
-   according to the cheat sheet below.
-6. A breaking change MUST append `!` after the type or scope and MUST include a `BREAKING CHANGE:` footer that explains
+5. A breaking change MUST append `!` after the type or scope and MUST include a `BREAKING CHANGE:` footer that explains
    the incompatibility and required consumer action.
-7. Use `fix` for a security defect remediation, including a third-party dependency upgrade that addresses a CVE. Use
-   `build` for dependency or build-tool maintenance that does not remediate a security defect.
-8. Avoid `chore` whenever a more specific allowed type accurately describes the change. Use `chore` only as a
-   last-resort classification for necessary maintenance that fits no other allowed type.
+
+## Jira References
+
+Use `[PROJECT-123]` at the end of the subject. When work has an owning Jira issue, its commit MUST use that identifier.
+Do not create an issue solely for this convention.
+
+Prefer one Jira identifier per commit. When multiple Jira issues directly own the work, include each identifier in
+adjacent brackets, such as `[PROJECT-123][PROJECT-124]`. Record other issue relationships in Jira rather than adding
+them to the subject.
+
+Automation-originated maintenance, such as a Dependabot patch dependency upgrade, MAY omit an identifier only when it
+has no owning Jira issue.
 
 ## Backports
 
@@ -94,6 +95,17 @@ its respective backport is:
 fix: handle null values in report parameters [SP-126]
 ```
 
+## Reverts
+
+When reverting a previous commit, use `revert:` followed by its original header:
+
+```text
+revert: feat(api): add file upload support [BACKLOG-150]
+```
+
+`revert` is a special case, not a normal commit type. It retains the original type, optional scope, description, and
+Jira identifier after `revert:`. Include `This reverts commit <SHA>.` in the body.
+
 ## Automated Subject Validation
 
 The rules in this standard are normative. The following JavaScript-compatible regular expression is a non-normative
@@ -104,12 +116,8 @@ implementation aid for validating a subject after extracting its first line:
 ```
 
 It checks permitted types, lowercase scopes, optional breaking-change notation, lowercase descriptions without a
-trailing period, and zero or more adjacent Jira identifiers. It reserves square brackets for Jira identifiers. A
-checker MUST validate the subject line only; it MUST not apply this expression independently to body or footer lines.
-
-The expression does not determine whether a Jira issue owns the work, whether a type accurately describes the change,
-or whether a breaking change includes the required `BREAKING CHANGE:` footer. Tooling and review MUST enforce those
-requirements separately.
+trailing period, and optional adjacent Jira identifiers. It reserves square brackets for Jira identifiers. A checker
+MUST validate the subject line only; it MUST not apply this expression independently to body or footer lines.
 
 ## Breaking Changes
 
@@ -121,16 +129,11 @@ configuration, or deployment. Mark it with `!` immediately before the colon: use
 A breaking change MUST also include a `BREAKING CHANGE:` footer after a blank line. The footer MUST explain
 the incompatibility and the action consumers must take.
 
-## Body And Footers
+```text
+feat(api)!: require explicit upload content type [BACKLOG-154]
 
-1. Add a body when it improves review or future understanding. Separate the body from the subject with one blank line.
-2. The body SHOULD explain the motivation, material implementation choices, affected behavior, risks, and validation
-   that are not evident from the diff.
-3. Add footers after a blank line when they communicate structured metadata. Footers MUST use Git trailer-style keys,
-   such as `Reviewed-by:` or `Refs:`.[^git-trailers] `BREAKING CHANGE:` is the Conventional Commits exception whose key
-   contains a space; use that exact form for breaking-change footers.
-4. Do not use a commit body to substitute for tests, documentation, or pull-request evidence required by the applicable
-   engineering standards.
+BREAKING CHANGE: Clients must send a supported Content-Type header when uploading files.
+```
 
 # Quick Reference
 
@@ -146,17 +149,16 @@ the incompatibility and the action consumers must take.
 | `build` | Build process, deployment configuration, or non-security dependency change | `build: upgrade Maven wrapper [BACKLOG-129]` |
 | `ci` | Continuous-integration or delivery configuration | `ci: run integration tests on Java 21 [BACKLOG-130]` |
 | `chore` | Last-resort maintenance that fits no other type | `chore: refresh development certificates [BACKLOG-131]` |
-| `revert` | Reversal of an earlier commit | `revert: remove file upload support [BACKLOG-136]` |
+| `revert` | Reversal of an earlier commit | `revert: feat(api): add file upload support [BACKLOG-150]` |
 
-Use a scope when it makes the change easier to locate; omit it when no concise, stable scope applies. Do not use a
-scope merely to restate the repository name. For a commit limited to one Maven module, use its artifact identifier, for
-example `fix(pentaho-reporting-engine): close export stream [BACKLOG-133]`.
-
-# Commit Types Cheat Sheet
+# Commit Type Guide
 
 ## `feat` - New Feature Or Functionality
 
 Use `feat` for a new user- or consumer-visible capability or behavior.
+
+A `feat` commit may include closely coupled documentation, tests, or refactoring required to deliver the capability; use
+separate commits when that supporting work is independently valuable.
 
 ### When To Use
 
@@ -175,6 +177,9 @@ Use `feat` for a new user- or consumer-visible capability or behavior.
 Use `fix` for incorrect production behavior, including security defects. A dependency upgrade that remediates a CVE is
 a `fix(deps)` change, not `build(deps)`.
 
+Describe the corrective action or resulting correct behavior in the imperative mood, rather than only naming the
+incorrect behavior.
+
 ### When To Use
 
 - correcting unintended or erroneous behavior
@@ -186,6 +191,8 @@ a `fix(deps)` change, not `build(deps)`.
 - `fix: handle null values in report parameters [BACKLOG-126]`
 - `fix(frontend): remove page-refresh flicker [BACKLOG-127]`
 - `fix(deps): upgrade jackson-databind to address CVE-2026-12345 [BACKLOG-128]`
+
+Avoid subjects that only state the defect, such as `fix: null report parameters fail [BACKLOG-126]`.
 
 ## `perf` - Performance Improvement
 
@@ -323,39 +330,17 @@ Do not use `chore` as a catch-all for dependencies, tests, documentation, format
 
 - `chore: exclude IDE workspace files [BACKLOG-148]`
 - `chore: refresh local development certificates [BACKLOG-149]`
-
-## `revert` - Revert An Earlier Commit
-
-Use `revert` to undo an earlier commit. Identify the reverted commit in the body or with a `Reverts:` footer when the
-subject alone does not identify it clearly.
-
-### When To Use
-
-- rolling back a previously merged change
-- restoring behavior by reversing a specific commit
-
-### Examples
-
-- `revert: remove file upload support [BACKLOG-150]`
-- `revert(api): restore legacy response format [BACKLOG-151]`
+- `chore: update license headers [BACKLOG-150]`
 
 # Complete Message Examples
 
-## Feature With Body And Footer
+## Feature With Body
 
 ```text
 feat(frontend): add file upload control [BACKLOG-152]
 
 Allow profile updates to include an uploaded file. The control sends the
 selected file to the existing upload endpoint and shows validation feedback.
-
-Refs: BACKLOG-152
-```
-
-## Multiple Related Jira Issues
-
-```text
-feat: remove Driver class requirement [SME-1059][SME-1011]
 ```
 
 ## Security Dependency Remediation
@@ -397,5 +382,4 @@ remediation date. A repository-specific commit convention that conflicts with th
 
 [^conventional-commits]: Conventional Commits 1.0.0
 [^semantic-versioning]: Semantic Versioning 2.0.0
-[^git-trailers]: git interpret-trailers
 [^release-please]: release-please
