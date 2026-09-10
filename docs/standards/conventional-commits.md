@@ -77,6 +77,7 @@ Otherwise, omit the scope unless one component is clearly primary. Do not combin
 
 > [!NOTE]
 > A repository may document its scope vocabulary in `CONTRIBUTING.md`.
+> This repository's [CONTRIBUTING.md](../../CONTRIBUTING.md) provides an example.
 >
 > Without an established vocabulary, ad hoc scopes can add noise. Prefer omitting the scope until a shared vocabulary
 > exists.
