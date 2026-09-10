@@ -5,7 +5,7 @@ description: Defines required commit-message structure and content for Pentaho c
 status: draft
 owner: Engineering
 tags: [commits, conventional-commits, jira, collaboration, release]
-generated: { by: human:engineering, at: 2026-09-09T21:35:17Z }
+generated: { by: human:engineering, at: 2026-09-10T11:17:41Z }
 last_reviewed: 2026-09-08
 sources:
   - id: conventional-commits
@@ -40,7 +40,8 @@ collaborators. Repository-specific standards may add narrower requirements but m
 ## Commit Content
 
 1. Each commit SHOULD contain one logical, self-contained change. Split unrelated changes into separate commits.
-2. A commit MUST use exactly one type that represents its primary intent. It MUST NOT combine or compose types.
+2. A commit MUST use exactly one type that represents its primary intent. It MUST NOT combine or compose types. This
+   rule does not apply to the special [`revert:` form](#reverts).
 3. Commits with independent intents or types SHOULD be separate. Closely coupled supporting changes MAY remain in one
    commit when splitting them would make review, testing, or backporting worse. For example, keep characterization
    tests, refactoring, formatting, and behavior changes separate when practical.
@@ -79,9 +80,9 @@ has no owning Jira issue.
 
 ## Backports
 
-A backport MUST retain the source commit's type, optional scope, and description. It MUST replace the source Jira issue
-identifier with only the owning release Jira issue identifier. Do not add `backport of` or the source Jira issue
-identifier to the subject; record the backport relationship in Jira instead.
+A backport's final commit subject MUST retain the source commit's type, optional scope, and description. It MUST replace
+the source Jira issue identifier with only the owning release Jira issue identifier. Do not add `backport of` or the
+source Jira issue identifier to the subject or a commit footer; record the backport relationship in Jira instead.
 
 For example, if the commit to `master` is:
 
@@ -95,16 +96,30 @@ its respective backport is:
 fix: handle null values in report parameters [SP-126]
 ```
 
+> [!NOTE]
+> Link the original pull request in the backport pull request description. This provides GitHub reviewers with direct
+> access to the original change.
+>
+> The final backport commit may be created by either amending the cherry-picked commit before a normal merge or using
+> the backport pull request title as the squash-merge commit message. This is workflow guidance; a future Pull Request
+> or Backport/SP Process Standard will address it in more detail.
+
 ## Reverts
 
 When reverting a previous commit, use `revert:` followed by its original header:
 
 ```text
 revert: feat(api): add file upload support [BACKLOG-150]
+
+This reverts commit <original-commit-sha>.
 ```
 
 `revert` is a special case, not a normal commit type. It retains the original type, optional scope, description, and
 Jira identifier after `revert:`. Include `This reverts commit <SHA>.` in the body.
+
+> [!WARNING]
+> GitHub's revert UI does not generate this required format. Do not use its generated commit message unchanged; amend
+> it before merge or create the revert locally.
 
 ## Automated Subject Validation
 
@@ -125,6 +140,11 @@ A breaking change changes a public API or behavior in a way that requires consum
 configuration, or deployment. Mark it with `!` immediately before the colon: use `type!:`, such as
 `feat!: remove legacy configuration [BACKLOG-155]`, or `type(scope)!:`, such as
 `feat(api)!: require explicit upload content type [BACKLOG-154]`.
+
+This applies regardless of how the component is versioned. When public boundaries are unclear, mark a change as
+breaking when the affected code or behavior is reasonably expected to be used outside its implementation. The marker
+supports impact assessment, maintenance-release and backport decisions, support documentation, and change logs even
+when it does not determine a version change.
 
 A breaking change MUST also include a `BREAKING CHANGE:` footer after a blank line. The footer MUST explain
 the incompatibility and the action consumers must take.
@@ -234,6 +254,11 @@ Unlike `style`, a refactor changes how the code is structured or expressed.
 
 Use `style` for a purely cosmetic source change that affects neither behavior nor code structure.
 
+> [!NOTE]
+> Keep formatting-only changes in a separate `style` commit whenever practical. Broad formatting diffs obscure logical
+> changes and increase the effort needed to review them. Before committing a functional change, revert unrelated
+> automatic formatting or linting changes; commit them independently if they are still needed.
+
 ### When To Use
 
 - applying an existing formatter
@@ -283,6 +308,10 @@ Use `docs` for documentation-only changes, including API descriptions, usage gui
 
 Use `build` for build systems, packaging, deployment configuration, or dependency maintenance that does not remediate a
 security defect. Use `fix(deps)` instead when a dependency upgrade addresses a CVE.
+
+> [!NOTE]
+> Use `ci` for CI/CD workflow and automation configuration, including configuration for build jobs. Use `build` for
+> build-process configuration outside CI/CD, such as Maven or Gradle build files and npm dependency maintenance.
 
 ### When To Use
 
