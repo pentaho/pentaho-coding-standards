@@ -46,7 +46,7 @@ collaborators. Repository-specific standards may add narrower requirements but m
    MAY remain together or be separated when that improves review, testing, or backporting.
 4. A pull request MAY contain commits of multiple types.
 5. A commit MUST describe both what changed and why when the subject alone does not make the reason clear.
-6. A commit SHOULD include its owning Jira issue identifier in the subject.
+6. A commit MUST include its owning Jira issue identifier. See [Jira References](#jira-references) for more details.
 
 ## Subject Format
 
@@ -55,6 +55,9 @@ collaborators. Repository-specific standards may add narrower requirements but m
    ```text
    <type>[optional (<scope>)][optional !]: <description> [optional [<JIRA-ID>]]...
    ```
+
+   A Jira identifier is required for human-authored commits. See [Jira References](#jira-references) for the narrow
+   automation exception.
 
 2. `type` MUST be one of `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, or
    `test`.[^commitlint-conventional] Use the type guidance below to select the appropriate type.
@@ -80,15 +83,15 @@ Otherwise, omit the scope unless one component is clearly primary. Do not combin
 
 ## Jira References
 
-Use `[PROJECT-123]` at the end of the subject. When work has an owning Jira issue, its commit MUST use that identifier.
-Do not create an issue solely for this convention.
+Use `[PROJECT-123]` at the end of the subject. Each human-authored commit MUST include its owning Jira issue
+identifier.
 
-Prefer one Jira identifier per commit. When multiple Jira issues directly own the work, include each identifier in
-adjacent brackets, such as `[PROJECT-123][PROJECT-124]`. Record other issue relationships in Jira rather than adding
-them to the subject.
+When multiple Jira issues directly own the work, include each identifier in adjacent brackets, such as
+`[PROJECT-123][PROJECT-124]`. Record other issue relationships in Jira rather than adding them to the subject.
 
-Automation-originated maintenance, such as a Dependabot patch dependency upgrade, MAY omit an identifier only when it
-has no owning Jira issue.
+An automation-originated maintenance commit MAY omit an identifier only when no Jira issue owns the work and requiring
+one would add manual effort to an otherwise unattended process. For example, a proactive Dependabot patch dependency
+update may omit an identifier.
 
 ## Backports
 
