@@ -42,9 +42,8 @@ collaborators. Repository-specific standards may add narrower requirements but m
 1. Each commit SHOULD contain one logical, self-contained change. Split unrelated changes into separate commits.
 2. A commit MUST use exactly one type that represents its primary intent. It MUST NOT combine or compose types. This
    rule does not apply to the special [`revert:` form](#reverts).
-3. Commits with independent intents or types SHOULD be separate. Closely coupled supporting changes MAY remain in one
-   commit when splitting them would make review, testing, or backporting worse. For example, keep characterization
-   tests, refactoring, formatting, and behavior changes separate when practical.
+3. Commits with independent intents or types SHOULD be separate. Closely coupled supporting changes, including tests,
+   MAY remain together or be separated when that improves review, testing, or backporting.
 4. A pull request MAY contain commits of multiple types.
 5. A commit MUST describe both what changed and why when the subject alone does not make the reason clear.
 6. A commit SHOULD include its owning Jira issue identifier in the subject.
@@ -59,12 +58,25 @@ collaborators. Repository-specific standards may add narrower requirements but m
 
 2. `type` MUST be one of `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, or
    `test`.[^commitlint-conventional] Use the type guidance below to select the appropriate type.
-3. `scope` is optional. Use it only when it clearly identifies the affected area, such as `api`, `frontend`, or
-   `backend`. Use `deps` for dependency changes. A repository MAY define a scope vocabulary; use it when available.
+3. `scope` is optional. See [Scopes](#scopes) for more details.
 4. `description` MUST concisely state the change in the imperative mood. Start it with a lowercase letter, do not end it
    with a period, and do not repeat the type, scope, or Jira identifier.
 5. A breaking change MUST append `!` after the type or scope and MUST include a `BREAKING CHANGE:` footer that explains
    the incompatibility and required consumer action.
+
+## Scopes
+
+Use one optional scope only when it clearly identifies the affected component or area, such as `api`, `frontend`,
+`backend`, `core`, `engine`, or `extensions`. Use `deps` for dependency changes.
+
+When a change affects multiple components, separate independent changes into different commits when practical.
+Otherwise, omit the scope unless one component is clearly primary. Do not combine multiple scopes in one subject.
+
+> [!NOTE]
+> A repository may document its scope vocabulary in `CONTRIBUTING.md`.
+>
+> Without an established vocabulary, ad hoc scopes can add noise. Prefer omitting the scope until a shared vocabulary
+> exists.
 
 ## Jira References
 
