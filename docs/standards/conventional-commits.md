@@ -143,12 +143,18 @@ The rules in this standard are normative. The following JavaScript-compatible re
 implementation aid for validating a subject after extracting its first line:
 
 ```text
-^(?:build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(?:\([a-z0-9][a-z0-9._/-]*\))?!?: [a-z](?:[^\n\[\]]*[^\s.\n\[\]])?(?: \[[A-Z][A-Z0-9]*-[0-9]+\](?:\[[A-Z][A-Z0-9]*-[0-9]+\])*)?$
+/^(?:build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(?:\([a-z0-9][a-z0-9._/-]*\))?!?: [\p{Ll}\p{Lo}](?:[^\n\[\]]*[^\s.\n\[\]])?(?: \[[A-Z][A-Z0-9]*-[0-9]+\](?:\[[A-Z][A-Z0-9]*-[0-9]+\])*)?$/u
 ```
 
-It checks permitted types, lowercase scopes, optional breaking-change notation, lowercase descriptions without a
-trailing period, and optional adjacent Jira identifiers. It reserves square brackets for Jira identifiers. A checker
-MUST validate the subject line only; it MUST not apply this expression independently to body or footer lines.
+It checks that a subject has:
+
+- a permitted type and a lowercase scope, when present
+- optional breaking-change notation
+- a description that begins with a lowercase or uncased Unicode letter and has no trailing period
+- optional adjacent Jira identifiers
+
+It reserves square brackets for Jira identifiers. A checker MUST validate the subject line only; it MUST not apply this
+expression independently to body or footer lines.
 
 ## Breaking Changes
 
