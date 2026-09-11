@@ -91,8 +91,7 @@ When multiple Jira issues directly own the work, include each identifier in adja
 `[PROJECT-123][PROJECT-124]`. Record other issue relationships in Jira rather than adding them to the subject.
 
 An automation-originated maintenance commit MAY omit an identifier only when no Jira issue owns the work and requiring
-one would add manual effort to an otherwise unattended process. For example, a proactive Dependabot patch dependency
-update may omit an identifier.
+one would add manual effort to an otherwise unattended process.
 
 ## Backports
 
