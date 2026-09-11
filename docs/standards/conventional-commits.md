@@ -93,6 +93,11 @@ When multiple Jira issues directly own the work, include each identifier in adja
 An automation-originated maintenance commit MAY omit an identifier only when no Jira issue owns the work and requiring
 one would add manual effort to an otherwise unattended process.
 
+> [!CAUTION]
+> A change that may need to be considered for backport to a Service Pack (SP) MUST have an associated Jira issue
+> identifier, even when created by an automated tool, unless that tool considers the SP branches. Without one, the
+> change may be missed during backport assessment.
+
 ## Backports
 
 A backport's final commit subject MUST retain the source commit's type, optional scope, and description. It MUST replace
