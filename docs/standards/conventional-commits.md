@@ -5,7 +5,7 @@ description: Defines required commit-message structure and content for Pentaho c
 status: draft
 owner: Engineering
 tags: [commits, conventional-commits, jira, collaboration, release]
-generated: { by: human:engineering, at: 2026-09-10T11:17:41Z }
+generated: { by: human:engineering, at: 2026-09-11T13:58:26Z }
 last_reviewed: 2026-09-08
 sources:
   - id: conventional-commits
@@ -100,9 +100,12 @@ one would add manual effort to an otherwise unattended process.
 
 ## Backports
 
-A backport's final commit subject MUST retain the source commit's type, optional scope, and description. It MUST replace
-the source Jira issue identifier with only the owning release Jira issue identifier. Do not add `backport of` or the
-source Jira issue identifier to the subject or a commit footer; record the backport relationship in Jira instead.
+A backport's final commit subject MUST retain the source commit's type, optional scope, description, and Jira
+identifier. It MUST append the owning Service Pack (SP) Jira issue identifier after the source Jira issue identifier.
+
+> [!WARNING]
+> Keep the source and SP Jira identifiers adjacent at the end of the subject. Do not insert `backport of` or other
+> backport-specific text between them.
 
 For example, if the commit to `master` is:
 
@@ -113,7 +116,7 @@ fix: handle null values in report parameters [BACKLOG-126]
 its respective backport is:
 
 ```text
-fix: handle null values in report parameters [SP-126]
+fix: handle null values in report parameters [BACKLOG-126][SP-126]
 ```
 
 > [!NOTE]
