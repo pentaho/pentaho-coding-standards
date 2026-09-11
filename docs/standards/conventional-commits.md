@@ -5,7 +5,7 @@ description: Defines required commit-message structure and content for Pentaho c
 status: draft
 owner: Engineering
 tags: [commits, conventional-commits, jira, collaboration, release]
-generated: { by: human:engineering, at: 2026-09-11T13:58:26Z }
+generated: { by: human:engineering, at: 2026-09-11T15:33:17Z }
 last_reviewed: 2026-09-08
 sources:
   - id: conventional-commits
@@ -46,7 +46,8 @@ collaborators. Repository-specific standards may add narrower requirements but m
    MAY remain together or be separated when that improves review, testing, or backporting.
 4. A pull request MAY contain commits of multiple types.
 5. A commit MUST describe both what changed and why when the subject alone does not make the reason clear.
-6. A commit MUST include its owning Jira issue identifier. See [Jira References](#jira-references) for more details.
+6. A human-authored commit MUST include its owning Jira issue identifier. See [Jira References](#jira-references) for
+   more details.
 
 ## Subject Format
 
@@ -101,7 +102,7 @@ one would add manual effort to an otherwise unattended process.
 ## Backports
 
 A backport's final commit subject MUST retain the source commit's type, optional scope, description, and Jira
-identifier. It MUST append the owning Service Pack (SP) Jira issue identifier after the source Jira issue identifier.
+identifier(s). It MUST append the owning Service Pack (SP) Jira issue identifier after all source Jira identifiers.
 
 > [!WARNING]
 > Keep the source and SP Jira identifiers adjacent at the end of the subject. Do not insert `backport of` or other
@@ -423,11 +424,19 @@ uploading files.
 
 # Rationale
 
-Conventional Commits defines an explicit commit-history structure that tools can consume.[^conventional-commits] Its
-`feat`, `fix`, and breaking-change signals align with SemVer minor, patch, and major version changes,
-respectively.[^semantic-versioning] Consistent subjects and Jira identifiers, when present, let contributors find the
-related work quickly and compile accurate pull-request descriptions. They also enable release automation such as
-changelog and version generation.[^release-please]
+- **Structured history and automation.** Conventional Commits defines an explicit history structure that tools can
+  consume.[^conventional-commits] Its `feat`, `fix`, and breaking-change signals align with SemVer minor, patch, and
+  major version changes, respectively.[^semantic-versioning] They also support release automation, including changelog
+  and version generation.[^release-please]
+- **Jira visibility.** Human-authored commits require Jira identifiers so their work is visible and traceable. The
+  narrow exception for unattended automation avoids requiring manual work solely to create a Jira issue.
+- **Service Pack backports.** Changes that may require Service Pack (SP) backport assessment need a Jira identifier,
+  including when automation creates them, unless the automation considers SP branches. Backports include both the
+  source and owning SP identifiers so either issue can be found in Git history.
+- **Optional scopes.** An ad hoc scope vocabulary adds noise without useful context. When a repository benefits from
+  scopes, it owns and documents a vocabulary that reflects its components or areas.
+- **Breaking changes.** Mark breaking changes even when a component does not use SemVer or has unclear public
+  boundaries. This makes their impact visible for maintenance, support, and backport decisions.
 
 # Exceptions
 
