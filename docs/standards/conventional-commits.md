@@ -65,8 +65,9 @@ collaborators. Repository-specific standards may add narrower requirements but m
 3. `scope` is optional. See [Scopes](#scopes) for more details.
 4. `description` MUST concisely state the change in the imperative mood. Start it with a lowercase letter, do not end it
    with a period, and do not repeat the type, scope, or Jira identifier.
-5. A breaking change MUST append `!` after the type or scope and MUST include a `BREAKING CHANGE:` footer that explains
-   the incompatibility and required consumer action.
+5. A breaking change MUST append `!` after the type or scope and MUST include a `BREAKING CHANGE:`
+   [footer](https://git-scm.com/docs/git-interpret-trailers) that explains the incompatibility and required consumer
+   action.
 
 ## Scopes
 
