@@ -6,7 +6,7 @@ status: proposed
 owner: Engineering
 tags: [commits, conventional-commits, jira, governance]
 created: 2026-09-08
-generated: { by: human:engineering, at: 2026-09-08T16:41:18Z }
+generated: { by: human:engineering, at: 2026-09-11T09:35:00Z }
 ---
 
 # Context
@@ -24,7 +24,12 @@ permitted types, and exception process.
 
 # Alternatives Considered
 
-1. Continue allowing free-form commit messages.
+1. Continue allowing the previous Jira-prefixed, free-form subject format:
+
+   ```text
+   [<JIRA-ID>][optional [<JIRA-ID>]]... <free-form-description>
+   ```
+
 2. Require Jira identifiers while leaving the remaining subject free-form.
 3. Adopt a repository-specific convention independently in each codebase.
 
