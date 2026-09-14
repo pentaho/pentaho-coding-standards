@@ -5,8 +5,8 @@ description: Defines required commit-message structure and content for Pentaho c
 status: draft
 owner: Engineering
 tags: [commits, conventional-commits, jira, collaboration, release]
-generated: { by: human:engineering, at: 2026-09-11T15:33:17Z }
-last_reviewed: 2026-09-08
+generated: { by: human:engineering, at: 2026-09-11T18:14:00Z }
+last_reviewed: 2026-09-11
 sources:
   - id: conventional-commits
     resource: "https://www.conventionalcommits.org/en/v1.0.0/"
@@ -20,6 +20,9 @@ sources:
   - id: release-please
     resource: "https://github.com/googleapis/release-please"
     title: release-please
+  - id: git-interpret-trailers
+    resource: "https://git-scm.com/docs/git-interpret-trailers"
+    title: Git interpret-trailers
 ---
 
 # Purpose
@@ -60,14 +63,14 @@ collaborators. Repository-specific standards may add narrower requirements but m
    A Jira identifier is required for human-authored commits. See [Jira References](#jira-references) for the narrow
    automation exception.
 
-2. `type` MUST be one of `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, or
-   `test`.[^commitlint-conventional] Use the type guidance below to select the appropriate type.
+2. For a normal subject, `type` MUST be one of `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`,
+   `style`, or `test`.[^commitlint-conventional] `revert:` is a special form defined in [Reverts](#reverts), not a
+   type. Use the type guidance below to select the appropriate type.
 3. `scope` is optional. See [Scopes](#scopes) for more details.
 4. `description` MUST concisely state the change in the imperative mood. Start it with a lowercase letter, do not end it
    with a period, and do not repeat the type, scope, or Jira identifier.
-5. A breaking change MUST append `!` after the type or scope and MUST include a `BREAKING CHANGE:`
-   [footer](https://git-scm.com/docs/git-interpret-trailers) that explains the incompatibility and required consumer
-   action.
+5. A breaking change MUST append `!` after the type or scope and MUST include a `BREAKING CHANGE:` footer[^git-interpret-trailers]
+   that explains the incompatibility and required consumer action.
 
 ## Scopes
 
@@ -152,12 +155,13 @@ The rules in this standard are normative. The following JavaScript-compatible re
 implementation aid for validating a subject after extracting its first line:
 
 ```text
-/^(?:build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(?:\([a-z0-9][a-z0-9._/-]*\))?!?: [\p{Ll}\p{Lo}](?:[^\n\[\]]*[^\s.\n\[\]])?(?: \[[A-Z][A-Z0-9]*-[0-9]+\](?:\[[A-Z][A-Z0-9]*-[0-9]+\])*)?$/u
+/^(?:(?:build|chore|ci|docs|feat|fix|perf|refactor|style|test)|(?:revert: )+(?:build|chore|ci|docs|feat|fix|perf|refactor|style|test))(?:\([a-z0-9][a-z0-9._/-]*\))?!?: [\p{Ll}\p{Lo}](?:[^\n\[\]]*[^\s.\n\[\]])?(?: \[[A-Z][A-Z0-9]*-[0-9]+\](?:\[[A-Z][A-Z0-9]*-[0-9]+\])*)?$/u
 ```
 
 It checks that a subject has:
 
-- a permitted type and a lowercase scope, when present
+- a permitted type and a lowercase scope, when present, or one or more `revert:` prefixes followed by the original
+  header
 - optional breaking-change notation
 - a description that begins with a lowercase or uncased Unicode letter and has no trailing period
 - optional adjacent Jira identifiers
@@ -167,15 +171,17 @@ expression independently to body or footer lines.
 
 ## Breaking Changes
 
-A breaking change changes a public API or behavior in a way that requires consumers to modify their code,
-configuration, or deployment. Mark it with `!` immediately before the colon: use `type!:`, such as
+A breaking change changes an interface, configuration, deployment, or behavior in a way that requires a consumer to
+modify code, configuration, or deployment. A consumer can be external or another internal component. Mark it with `!`
+immediately before the colon: use `type!:`, such as
 `feat!: remove legacy configuration [BACKLOG-155]`, or `type(scope)!:`, such as
 `feat(api)!: require explicit upload content type [BACKLOG-154]`.
 
-This applies regardless of how the component is versioned. When public boundaries are unclear, mark a change as
-breaking when the affected code or behavior is reasonably expected to be used outside its implementation. The marker
-supports impact assessment, maintenance-release and backport decisions, support documentation, and change logs even
-when it does not determine a version change.
+An externally observable behavior can remain unchanged while an internal interface or dependency becomes incompatible.
+Mark that change as breaking so its risk remains visible.
+
+This applies regardless of how the component is versioned. The marker supports impact assessment, maintenance-release
+and backport decisions, support documentation, and change logs even when it does not determine a version change.
 
 A breaking change MUST also include a `BREAKING CHANGE:` footer after a blank line. The footer MUST explain
 the incompatibility and the action consumers must take.
@@ -200,7 +206,6 @@ BREAKING CHANGE: Clients must send a supported Content-Type header when uploadin
 | `build` | Build process, deployment configuration, or non-security dependency change | `build: upgrade Maven wrapper [BACKLOG-129]` |
 | `ci` | Continuous-integration or delivery configuration | `ci: run integration tests on Java 21 [BACKLOG-130]` |
 | `chore` | Last-resort maintenance that fits no other type | `chore: refresh development certificates [BACKLOG-131]` |
-| `revert` | Reversal of an earlier commit | `revert: feat(api): add file upload support [BACKLOG-150]` |
 
 # Commit Type Guide
 
@@ -448,6 +453,8 @@ remediation date. A repository-specific commit convention that conflicts with th
 
 - [0002 Adopt Conventional Commits For Pentaho Codebases](../decisions/0002-adopt-conventional-commits-for-pentaho-codebases.md)
 
-[^conventional-commits]: Conventional Commits 1.0.0
-[^semantic-versioning]: Semantic Versioning 2.0.0
-[^release-please]: release-please
+[^conventional-commits]: [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/)
+[^semantic-versioning]: [Semantic Versioning 2.0.0](https://semver.org/)
+[^commitlint-conventional]: [commitlint conventional configuration](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-conventional)
+[^release-please]: [release-please](https://github.com/googleapis/release-please)
+[^git-interpret-trailers]: [Git interpret-trailers](https://git-scm.com/docs/git-interpret-trailers)
