@@ -46,7 +46,7 @@ sources:
    create a scope-specific registry entry. Successful login writes or replaces credentials for that repository.
 
 3. Compare `~/.npmrc` with the
-   [required user-level structure](../standards/npm-repository-configuration.md#user-level-example).
+   [required user-level structure](../standards/npm/repository-configuration.md#user-level-configuration).
 
 4. Remove any scope-specific registry entries, such as `@pentaho-apps:registry` or `@emotion:registry`.
 
@@ -80,4 +80,4 @@ fails through the default repository.
 
 # Governing Documents
 
-- [npm Repository Configuration Standard](../standards/npm-repository-configuration.md)
+- [npm Repository Configuration Standard](../standards/npm/repository-configuration.md)

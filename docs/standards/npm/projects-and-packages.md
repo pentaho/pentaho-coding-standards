@@ -47,8 +47,8 @@ Each project belongs to one category:
    source is open, and it accepts contributions from people without Pentaho repository access.
 
 Additional rules for public-distribution packages and open-contribution projects are defined by the
-[npm Repository Configuration Standard](npm-repository-configuration.md) for dependency sourcing and by the
-[npm CI And Publishing Standard](npm-ci-and-publishing.md) for CI and publishing. The latter also defines how a
+[npm Repository Configuration Standard](repository-configuration.md) for dependency sourcing and by the
+[npm CI And Publishing Standard](ci-and-publishing.md) for CI and publishing. The latter also defines how a
 public-distribution project that mixes internal and public-distribution packages separates publishing per registry.
 
 # Rules
@@ -74,9 +74,9 @@ public-distribution project that mixes internal and public-distribution packages
 
 # Complementary Guidance
 
-- [npm Repository Configuration Standard](npm-repository-configuration.md) - Dependency repository policy and npmrc
+- [npm Repository Configuration Standard](repository-configuration.md) - Dependency repository policy and npmrc
   configuration.
-- [npm CI And Publishing Standard](npm-ci-and-publishing.md) - CI installation, authentication, and publishing rules.
+- [npm CI And Publishing Standard](ci-and-publishing.md) - CI installation, authentication, and publishing rules.
 
 # Exceptions
 

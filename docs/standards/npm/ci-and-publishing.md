@@ -46,19 +46,19 @@ sources:
 # Purpose
 
 Define how npm projects are prepared for CI and how CI installs dependencies and publishes packages. The
-[npm Projects And Packages Standard](npm-projects-and-packages.md) owns project categories and package identity, and
-the [npm Repository Configuration Standard](npm-repository-configuration.md) owns common repository policy.
+[npm Projects And Packages Standard](projects-and-packages.md) owns project categories and package identity, and
+the [npm Repository Configuration Standard](repository-configuration.md) owns common repository policy.
 
 # Applicability
 
 The rules under [Rules](#rules) apply to every Pentaho npm project and to the packages it publishes. The additional
 rules that follow apply to the
-[package and project categories](npm-projects-and-packages.md#package-categories) they name.
+[package and project categories](projects-and-packages.md#package-categories) they name.
 
 # Guiding Principles
 
 These principles are design choices that complement the
-[configuration principles](npm-repository-configuration.md#guiding-principles) and shape the rules below.
+[configuration principles](repository-configuration.md#guiding-principles) and shape the rules below.
 
 1. **Credentials are least-privilege and purpose-scoped.** Dependency installation uses read access only, write access
    exists only in publishing jobs, and each credential is scoped to its target repository.
@@ -66,14 +66,14 @@ These principles are design choices that complement the
    is where this standard is enforced. Developer environments are not verified directly; instead, nothing reaches a
    Pentaho repository without passing through a job that resolved its dependencies correctly and was checked. This
    protects published artifacts, but workstation compliance is not verified: see
-   [Limitations](npm-repository-configuration.md#limitations).
+   [Limitations](repository-configuration.md#limitations).
 
 # Rules
 
 ## Dependency Installation
 
 1. At job start, generate the
-   [required user-level npm configuration](npm-repository-configuration.md#user-level-configuration) using CI secrets.
+   [required user-level npm configuration](repository-configuration.md#user-level-configuration) using CI secrets.
    Use a CI authentication action or non-interactive [`npm config set`][npm-config] commands with `--location=user`;
    do not use `npm login`.
 2. Install dependencies with [`npm ci`][npm-ci].
@@ -150,7 +150,7 @@ incrementally.
    consuming Pentaho CI capacity and from probing the environment it runs in.
 8. GitHub withholds repository secrets from workflow runs triggered by fork pull requests, so such a run cannot
    authenticate to Pentaho's repository and cannot reproduce the dependency path required by the
-   [npm Repository Configuration Standard](npm-repository-configuration.md). Re-running the changes from a branch of
+   [npm Repository Configuration Standard](repository-configuration.md). Re-running the changes from a branch of
    the Pentaho repository keeps every qualifying build on that one dependency path.
 9. The recommended CI checks catch changes that would reintroduce environment-specific repository addresses into
    project `.npmrc` files and lockfiles. Placing them in CI makes them effective without depending on each developer's
@@ -237,6 +237,6 @@ Deviations require Engineering management approval and a documented rationale.
 
 # Governing Documents
 
-- [npm Projects And Packages Standard](npm-projects-and-packages.md)
-- [npm Repository Configuration Standard](npm-repository-configuration.md)
+- [npm Projects And Packages Standard](projects-and-packages.md)
+- [npm Repository Configuration Standard](repository-configuration.md)
 
