@@ -41,7 +41,7 @@ sources:
 
 Define common npm dependency repository policy and the required division between user-level and project-level
 configuration. Project categories are defined by the
-[npm Projects And Packages Standard](npm-projects-and-packages.md). Detailed developer procedures and CI requirements
+[npm Projects And Packages Standard](projects-and-packages.md). Detailed developer procedures and CI requirements
 are owned by linked documents.
 
 # Dependency Sourcing Requirement
@@ -59,7 +59,7 @@ This requirement enables Pentaho to:
   continuity, and auditing
 
 The requirement applies to every project, whatever its
-[package and project categories](npm-projects-and-packages.md#package-categories). The additional rules below apply to
+[package and project categories](projects-and-packages.md#package-categories). The additional rules below apply to
 the categories they name.
 
 # Guiding Principles
@@ -83,31 +83,9 @@ Unlike the requirement, they could be revisited, which would lead to different r
    - authentication scoped to that repository and limited to package read access
 2. Do not configure scope-specific registries. Pentaho and third-party scopes must use the default registry.
 3. Configure writable publish repositories and their authentication separately, as defined by the
-   [npm CI And Publishing Standard](npm-ci-and-publishing.md).
+   [npm CI And Publishing Standard](ci-and-publishing.md).
 
-## Project-Level Configuration
-
-1. Commit a project-level `.npmrc` beside every `package-lock.json`.
-2. Each project-level `.npmrc` must contain
-   [`omit-lockfile-registry-resolved=true`][omit-lockfile-registry-resolved].
-3. Do not include `registry`, scope-specific registry entries, or credentials in a project-level `.npmrc`.
-4. Commit an intended `package-lock.json` change together with the related code or configuration change.
-
-# Additional Rules For Public-Distribution Packages
-
-1. Every [dependency][package-dependencies] that npm must obtain for consumers of a public-distribution package must be
-   available from public registries.
-
-# Additional Rules For Open-Contribution Projects
-
-1. The project must remain buildable and testable without Pentaho repository access, using dependencies available from
-   public sources.
-
-# Required npmrc Structures
-
-## User-Level Example
-
-The user-level configuration has this general shape:
+Required structure:
 
 ```ini
 registry=https://repo.pentaho.com/artifactory/api/npm/npm/
@@ -119,19 +97,34 @@ for Pentaho's dependency repository must be scoped to that repository and grant 
 registries may coexist in the user-level file when needed for unrelated third-party projects; those projects are outside
 this standard's project-level configuration rules.
 
-## Project-Level Example
+Developers keep this file in their home directory; CI may generate it for each job.
 
-Each project-level `.npmrc` has this current structure:
+## Project-Level Configuration
+
+1. Commit a project-level `.npmrc` beside every `package-lock.json`.
+2. Each project-level `.npmrc` must contain
+   [`omit-lockfile-registry-resolved=true`][omit-lockfile-registry-resolved].
+3. Do not include `registry`, scope-specific registry entries, or credentials in a project-level `.npmrc`.
+4. Commit an intended `package-lock.json` change together with the related code or configuration change.
+
+Required structure:
 
 ```ini
 omit-lockfile-registry-resolved=true
 ```
 
 A project may contain several such files, one beside each `package-lock.json`. Project-level files may gain other
-approved settings later, but must not select a registry or contain credentials.
+approved settings later, but must not select a registry or contain credentials. They are committed with the source.
 
-These examples define resulting structure, not setup procedure. Developers keep user configuration in their home
-directory; CI may generate it for each job. Project configuration is committed with the source.
+# Additional Rules For Public-Distribution Packages
+
+1. Every [dependency][package-dependencies] that npm must obtain for consumers of a public-distribution package must be
+   available from public registries.
+
+# Additional Rules For Open-Contribution Projects
+
+1. The project must remain buildable and testable without Pentaho repository access, using dependencies available from
+   public sources.
 
 # Rationale
 
@@ -189,11 +182,11 @@ and compliance metadata. Developers and DevOps operators must maintain valid use
 
 # Complementary Guidance
 
-- [npm Projects And Packages Standard](npm-projects-and-packages.md) - Package and project categories, and package
+- [npm Projects And Packages Standard](projects-and-packages.md) - Package and project categories, and package
   naming and publishability.
-- [npm Developer Repository Setup](../runbooks/npm-developer-repository-setup.md) - Initial setup, verification,
+- [npm Developer Repository Setup](../../runbooks/npm-developer-repository-setup.md) - Initial setup, verification,
   authentication renewal, and rollback.
-- [npm CI And Publishing Standard](npm-ci-and-publishing.md) - CI installation, authentication, and publishing rules.
+- [npm CI And Publishing Standard](ci-and-publishing.md) - CI installation, authentication, and publishing rules.
 
 # Exceptions
 
